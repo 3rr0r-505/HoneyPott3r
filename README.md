@@ -166,6 +166,6 @@ python scripts/stop_services.py
 ```
 
 ## License
-This project is licensed under the [MIT License]() - see the LICENSE file for details.
+This project is licensed under the [MIT License](https://github.com/3rr0r-505/HoneyPot3r/blob/main/LICENSE) - see the LICENSE file for details.
 
 
