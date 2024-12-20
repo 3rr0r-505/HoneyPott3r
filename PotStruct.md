@@ -1,4 +1,4 @@
-# HoneyPot3r - Python Honeypot Project
+# HoneyPott3r - Python Honeypot Project
 
 This Honeypot Project simulates network services to detect and analyze cyberattacks, logging attacker interactions and patterns. 
 It includes features like data visualization, geolocation, and a web interface for managing collected data.
@@ -73,47 +73,49 @@ This project uses the following Python libraries for simulating services:
 
 
 ## Project File Structure
+The project is organized in a way that makes it easy to extend and manage services. 
+Here's an overview of the main project directory and its structure:
 ```
 honeypot_project/
 │
-├── README.md                # Project description and setup instructions
-├── requirements.txt         # List of dependencies
+├── README.md                    # Project description and setup instructions
+├── requirements.txt             # List of dependencies
 │
-├── honeypot/                 # Main directory for honeypot services
-│   ├── __init__.py          # Initialization file for the package
-│   ├── core.py              # Core logic for starting and managing protocols
-│   ├── logger.py            # Logger module for logging traffic and attacks
-│   ├── config.py            # Configuration file (IP ranges, ports, etc.)
-│   ├── services/            # Directory for each simulated service
-│   │   ├── http_service.py  # Simulates HTTP service using Flask
-│   │   ├── ssh_service.py   # Simulates SSH service using paramiko
-│   │   ├── https_service.py # Simulates HTTPS service using Flask and ssl
-│   │   ├── ftp_service.py   # Simulates FTP service using pyftpdlib
-│   │   ├── smb_service.py   # Simulates SMB service using smbprotocol
-│   │   ├── dns_service.py   # Simulates DNS service using dnslib
-│   │   ├── rdp_service.py   # Simulates RDP service
-│   │   ├── mysql_service.py # Simulates MySQL service using PyMySQL
-│   │   ├── postgres_service.py # Simulates PostgreSQL service using psycopg2
-│   │   ├── smtp_service.py  # Simulates SMTP service using smtplib
-│   │   ├── telnet_service.py # Simulates Telnet service using telnetlib
-│   │   ├── pop3_service.py  # Simulates POP3 service using poplib
-│   │   ├── imap_service.py  # Simulates IMAP service using imaplib
-│   │   ├── ldap_service.py  # Simulates LDAP service using ldap3
-│   │   ├── redis_service.py # Simulates Redis service using redis-py
-│   │   ├── ntp_service.py   # Simulates NTP service using ntplib
-│   │   ├── snmp_service.py  # Simulates SNMP service using pysnmp
-│   │   ├── irc_service.py   # Simulates IRC service using irc
-│   │   ├── elastic_service.py # Simulates ElasticSearch service
-│   │   ├── vnc_service.py   # Simulates VNC service using vncdotool
-│   │   ├── socks5_service.py # Simulates SOCKS5 service using PySocks
-│   │   ├── sip_service.py   # Simulates SIP service using Twisted or pjsip
-│   │   ├── dhcp_service.py  # Simulates DHCP service
-│   │   ├── memcache_service.py # Simulates Memcached service using pymemcache
-│   │   ├── mssql_service.py  # Simulates MSSQL service using pyodbc
-│   │   ├── oracle_service.py # Simulates Oracle DB service using cx_Oracle
+├── honeypot/                    # Main directory for honeypot services
+│   ├── __init__.py              # Initialization file for the package
+│   ├── core.py                  # Core logic for starting and managing protocols
+│   ├── logger.py                # Logger module for logging traffic and attacks
+│   ├── config.py                # Configuration file (IP ranges, ports, etc.)
+│   ├── services/                # Directory for each simulated service
+│   │   ├── http_service.py      # Simulates HTTP service using Flask
+│   │   ├── ssh_service.py       # Simulates SSH service using paramiko
+│   │   ├── https_service.py     # Simulates HTTPS service using Flask and ssl
+│   │   ├── ftp_service.py       # Simulates FTP service using pyftpdlib
+│   │   ├── smb_service.py       # Simulates SMB service using smbprotocol
+│   │   ├── dns_service.py       # Simulates DNS service using dnslib
+│   │   ├── rdp_service.py       # Simulates RDP service
+│   │   ├── mysql_service.py     # Simulates MySQL service using PyMySQL
+│   │   ├── postgres_service.py  # Simulates PostgreSQL service using psycopg2
+│   │   ├── smtp_service.py      # Simulates SMTP service using smtplib
+│   │   ├── telnet_service.py    # Simulates Telnet service using telnetlib
+│   │   ├── pop3_service.py      # Simulates POP3 service using poplib
+│   │   ├── imap_service.py      # Simulates IMAP service using imaplib
+│   │   ├── ldap_service.py      # Simulates LDAP service using ldap3
+│   │   ├── redis_service.py     # Simulates Redis service using redis-py
+│   │   ├── ntp_service.py       # Simulates NTP service using ntplib
+│   │   ├── snmp_service.py      # Simulates SNMP service using pysnmp
+│   │   ├── irc_service.py       # Simulates IRC service using irc
+│   │   ├── elastic_service.py   # Simulates ElasticSearch service
+│   │   ├── vnc_service.py       # Simulates VNC service using vncdotool
+│   │   ├── socks5_service.py    # Simulates SOCKS5 service using PySocks
+│   │   ├── sip_service.py       # Simulates SIP service using Twisted or pjsip
+│   │   ├── dhcp_service.py      # Simulates DHCP service
+│   │   ├── memcache_service.py  # Simulates Memcached service using pymemcache
+│   │   ├── mssql_service.py     # Simulates MSSQL service using pyodbc
+│   │   ├── oracle_service.py    # Simulates Oracle DB service using cx_Oracle
 │   │   ├── httpproxy_service.py # Simulates HTTP Proxy service using mitmproxy
-│   │   ├── pjl_service.py   # Simulates PJL service
-│   │   ├── ipp_service.py   # Simulates IPP service using pyipp
+│   │   ├── pjl_service.py       # Simulates PJL service
+│   │   ├── ipp_service.py       # Simulates IPP service using pyipp
 │
 ├── logs/                    # Directory to store log files
 │   ├── access_logs/         # Logs for incoming access
@@ -122,7 +124,7 @@ honeypot_project/
 ├── database/                # Directory to store database (e.g., MongoDB or SQLite)
 │   ├── honeypot_data.db     # Database file (if using SQLite) or connection details
 │
-└── scripts/                  # Utility scripts for managing and starting services
+└── scripts/                 # Utility scripts for managing and starting services
     ├── start_services.py    # Script to start all honeypot services
     ├── stop_services.py     # Script to stop all honeypot services
     ├── monitor_traffic.py   # Script to analyze traffic and detect attacks
