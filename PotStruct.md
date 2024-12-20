@@ -1,7 +1,6 @@
 # HoneyPott3r - Python Honeypot Project
 
-This Honeypot Project simulates network services to detect and analyze cyberattacks, logging attacker interactions and patterns. 
-It includes features like data visualization, geolocation, and a web interface for managing collected data.
+HoneyPott3r is a Python-based honeypot that simulates various network services (e.g., HTTP, SSH, FTP, MySQL) to attract and log unauthorized access attempts. It enables monitoring and analysis of malicious traffic across multiple protocols, providing valuable insights for cybersecurity research.
 
 ## Services Simulated
 This honeypot simulates the following protocols:
