@@ -75,12 +75,12 @@ This project uses the following Python libraries for simulating services:
 The project is organized in a way that makes it easy to extend and manage services. 
 Here's an overview of the main project directory and its structure:
 ```
-honeypot_project/
+honeypott3r/
 │
 ├── README.md                    # Project description and setup instructions
 ├── requirements.txt             # List of dependencies
 │
-├── honeypot/                    # Main directory for honeypot services
+├── honeypots/                    # Main directory for honeypot services
 │   ├── __init__.py              # Initialization file for the package
 │   ├── core.py                  # Core logic for starting and managing protocols
 │   ├── logger.py                # Logger module for logging traffic and attacks
