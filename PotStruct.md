@@ -2,6 +2,8 @@
 
 HoneyPott3r is a Python-based honeypot that simulates various network services (e.g., HTTP, SSH, FTP, MySQL) to attract and log unauthorized access attempts. It enables monitoring and analysis of malicious traffic across multiple protocols, providing valuable insights for cybersecurity research.
 
+---
+
 ## Services Simulated
 This honeypot simulates the following protocols:
 | Service    | Ports                    | Details                                                  |
@@ -35,6 +37,8 @@ This honeypot simulates the following protocols:
 | httpproxy  | 8080, 3128               | Protocol for intermediary HTTP communication.            |
 | pjl        | 9100                     | Protocol for managing print jobs and printers.           |
 | ipp        | 631                      | Protocol for managing print jobs over IP networks.       |
+
+---
 
 ## Libraries Used
 This project uses the following Python libraries for simulating services:
@@ -70,9 +74,9 @@ This project uses the following Python libraries for simulating services:
 | pjl        | `pjl`                           |
 | ipp        | `pyipp`                         |
 
+---
 
 ## Project File Structure
-The project is organized in a way that makes it easy to extend and manage services. 
 Here's an overview of the main project directory and its structure:
 ```
 honeypott3r/
@@ -130,4 +134,31 @@ honeypott3r/
     ├── attack_alerts.py     # Script to send alerts for detected attacks
 
 ```
+---
+
+## Project Features
+Here’s the list of features for this project:
+
+| **Category**              | **Feature**                                        | **Description**                                                                                          |
+|---------------------------|-------------------------------------------------   |----------------------------------------------------------------------------------------------------------|
+| **Core Features**         |                                                    |                                                                                                          |
+|  1                        | Protocol Emulation                                 | Emulate services like SSH, HTTP, FTP, or Telnet to attract attackers.                                    |
+|  2                        | Logging and Monitoring                             | Log attacker IPs, timestamps, attempted commands, and payloads.                                          |
+|  3                        | Interactive Session Capture                        | Allow limited interaction in the emulated service and capture attacker commands.                         |
+|  4                        | Data Collection                                    | Save malicious files uploaded to the honeypot for later analysis.                                        |
+|  5                        | Intrusion Detection                                | Track repeated attempts from the same IP and flag suspicious activity.                                   |
+| **Unique Features**       |                                                    |                                                                                                          |
+|   1                       | Dynamic Behavior                                   | Change banner or response messages periodically to mimic real systems (e.g., simulate OS versions).      |
+|   2                       | Custom Protocol Simulation                         | Create a lightweight fake protocol that intrigues attackers (e.g., a fake sensitive API endpoint).       |
+|   3                       | Geolocation of Attackers                           | Use IP geolocation to log the attacker's approximate location.                                           |
+|   4                       | Alerting System                                    | Send alerts via email or messaging services (e.g., Telegram) for specific activities.                    |
+|   5                       | Port Scanning Detection                            | Log and respond to tools like Nmap or masscan.                                                           |
+|   6                       | Sandboxing of Uploaded Payloads                    | Log malicious files securely for later analysis instead of executing them.                               |
+| **Advanced Features**     |                                                    |                                                                                                          |
+|    1                      | Honeypot Statistics Dashboard                      | Build a simple web interface to visualize logs and statistics (e.g., attack origins, attack types).      |
+|    2                      | Integration with Public Threat Feed                | Compare attacker IPs with known malicious actor lists and flag them.                                     |
+|    3                      | Time-Delayed Responses                             | Introduce response delays to mimic real servers and frustrate attackers.                                 |
+|    4                      | Fake Vulnerabilities                               | Simulate a vulnerable application or endpoint to log attacker exploitation methods.                      |    |
+
+---
 
