@@ -33,7 +33,7 @@ python scripts/stop_services.py
 ```
 ---
 ## Note
-⚠️ For detailed project structure, visit the [PotStruct.md](https://github.com/3rr0r-505/HoneyPott3r/main/PotStruct.md)
+⚠️ For detailed project structure, visit the [PotStruct.md](https://github.com/3rr0r-505/HoneyPott3r/blob/main/PotStruct.md)
 
 ⚙️ This Project is under development.
 
