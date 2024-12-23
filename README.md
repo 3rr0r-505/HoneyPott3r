@@ -32,15 +32,35 @@ python scripts/monitor_traffic.py
 python scripts/stop_services.py
 ```
 ---
+## Approach for Development
+
+- [ ] **Identify Flaws in Current Honeypots**  
+  Conduct research on existing open-source honeypots to pinpoint their limitations and vulnerabilities.
+
+- [ ] **Discover Attack Vectors**  
+  Explore how malicious actors exploit these flaws to compromise systems.
+
+- [ ] **Select an Open-Source Honeypot**  
+  Choose a suitable open-source honeypot project as the base for further development.
+
+- [ ] **Mitigate Flaws**  
+  Implement features and improvements to address the identified weaknesses, enhancing security and functionality.
+
+- [ ] **Documentation and Research Publication**  
+  Document all findings, development steps, and results. Compile this work into a research paper and publish it to contribute to the cybersecurity community.
+
+---
 ## Note
+>### ⚙️ **This Project is under development.**
+
 ⚠️ For detailed project structure, visit the [PotStruct.md](https://github.com/3rr0r-505/HoneyPott3r/blob/main/PotStruct.md)
 
-⚙️ This Project is under development.
-
+---
 ## Contributing
 
 Contributions are welcome! Feel free to open issues or pull requests for any improvements or bug fixes.
 
+---
 ## Legal Disclaimer
 The use of code contained in this repository, either in part or in its totality,
 for engaging targets without prior mutual consent is illegal. **It is
@@ -64,6 +84,7 @@ of finding and mitigating vulnerabilities in systems, limiting their exposure
 to compromises and exploits employed by malicious agents as defined in their
 respective threat models.
 
+---
 ## License
 This project is licensed under the [MIT License](https://github.com/3rr0r-505/HoneyPot3r/blob/main/LICENSE) - see the LICENSE file for details.
 
