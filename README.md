@@ -1,4 +1,5 @@
 # HoneyPott3r - Python Honeypot Project
+>### ⚙️ **This Project is under development.**
 
 ## Project Overview
 HoneyPott3r is a Python-based honeypot that simulates various network services (e.g., HTTP, SSH, FTP, MySQL) to attract and log unauthorized access attempts. It enables monitoring and analysis of malicious traffic across multiple protocols, providing valuable insights for cybersecurity research.
@@ -50,17 +51,9 @@ python scripts/stop_services.py
   Document all findings, development steps, and results. Compile this work into a research paper and publish it to contribute to the cybersecurity community.
 
 ---
-## Note
->### ⚙️ **This Project is under development.**
-
-⚠️ For detailed project structure, visit the [PotStruct.md](https://github.com/3rr0r-505/HoneyPott3r/blob/main/PotStruct.md)
-
----
 ## Contributing
-
 Contributions are welcome! Feel free to open issues or pull requests for any improvements or bug fixes.
 
----
 ## Legal Disclaimer
 The use of code contained in this repository, either in part or in its totality,
 for engaging targets without prior mutual consent is illegal. **It is
@@ -84,8 +77,8 @@ of finding and mitigating vulnerabilities in systems, limiting their exposure
 to compromises and exploits employed by malicious agents as defined in their
 respective threat models.
 
----
 ## License
 This project is licensed under the [MIT License](https://github.com/3rr0r-505/HoneyPot3r/blob/main/LICENSE) - see the LICENSE file for details.
 
+---
 
