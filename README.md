@@ -8,21 +8,21 @@ HoneyPott3r is a Python-based honeypot that simulates various network services (
 ## Installation
 
 1. Clone this repository:
-   ```
-   git clone https://github.com/3rr0r-505/HoneyPott3r.git
-   ```
-   ```
-   cd HoneyPott3r
-   ```
+     ```
+     git clone https://github.com/3rr0r-505/HoneyPott3r.git
+     ```
+     ```
+     cd HoneyPott3r
+     ```
 2. Install dependencies:
-  ```bash
-    pip install -r requirements.txt
-  ```
+     ```
+     pip install -r requirements.txt
+     ```
 
 ## Usage
 - Start all honeypot services:
 ```
-  python scripts/start_services.py
+python scripts/start_services.py
 ```
 - Monitor traffic and detect attacks:
 ```
