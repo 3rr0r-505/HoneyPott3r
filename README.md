@@ -1,4 +1,4 @@
-# HoneyPott3r - Python Honeypot Project
+# HoneyPott3r - Python Honeypot Vulnerability Scanner
 >### ⚙️ **This Project is under development.**
 
 ## Project Overview
