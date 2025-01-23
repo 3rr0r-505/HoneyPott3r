@@ -18,7 +18,7 @@ HoneyPott3r is a Python-based honeypot that simulates various network services (
      ```
      pip install -r requirements.txt
      ```
-
+<!--
 ## Usage
 - Start all honeypot services:
 ```
@@ -51,6 +51,7 @@ python scripts/stop_services.py
   Document all findings, development steps, and results. Compile this work into a research paper and publish it to contribute to the cybersecurity community.
 
 ---
+-->
 ## Contributing
 Contributions are welcome! Feel free to open issues or pull requests for any improvements or bug fixes.
 
