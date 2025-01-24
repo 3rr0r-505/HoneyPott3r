@@ -45,6 +45,39 @@ HoneyPott3r/
 ```
 ---
 
+## Project Workflow
+Here’s the workflow of your tool:
+```
+Start Tool
+   ↓
+Get User Input (Target IP/Range)
+   ↓
+Network Scanning (e.g., Nmap, OpenVAS)
+   ↓
+Analyze Responses for Honeypot Indicators
+   ↓
+   ├── Detect Common Honeypot Frameworks (e.g., Cowrie, Dionaea)
+   │       ↓
+   │   Match Honeypot Signatures (Banners, Ports, Behaviors)
+   ↓
+Simulate Attacks
+   ├── Code Injection → Analyze Logs/Responses
+   ├── DoS/Service Crash → Observe Honeypot Behavior
+   ├── Privilege Escalation → Check Response to Exploits
+   ├── Reverse Exploitation → Honeypot Weakness Test
+   └── Log Evasion → Verify if Logs Are Manipulated
+   ↓
+Generate Results
+   ├── Detected Honeypots
+   ├── Attack Success/Failure Reports
+   └── Exploited Vulnerabilities
+   ↓
+Store Results in Logs/Reports
+   ↓
+End Tool
+```
+---
+
 ## Supported Honeypots and Protocols
 Here’s the list of honeypots for testing this project:
 
