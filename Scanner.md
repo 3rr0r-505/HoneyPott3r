@@ -81,15 +81,16 @@ End Tool
 ## Supported Honeypots and Protocols
 Here’s the list of honeypots for testing this project:
 
-| **Honeypot**  | **Supported Protocols**            | **Purpose**                                                 | **Repository**                                            |
-|---------------|------------------------------------|-------------------------------------------------------------|-----------------------------------------------------------|
-| **Cowrie**    | SSH, Telnet                        | Emulates SSH/Telnet to capture brute force attacks.         | [GitHub Link](https://github.com/cowrie/cowrie)           |
-| **Dionaea**   | SMB, HTTP, FTP, TFTP, MSSQL, MySQL | Catches malware and collects samples for analysis.          | [GitHub Link](https://github.com/DinoTools/dionaea)       |
-| **Honeyd**    | TCP, UDP, ICMP                     | Simulates multiple hosts and services on a network.         | [GitHub Link](https://github.com/DataSoft/Honeyd)         |
-| **Glastopf**  | HTTP                               | Emulates vulnerable web servers to capture attack patterns. | [GitHub Link](https://github.com/mushorg/glastopf)        |
-| **Conpot**    | Modbus, SNMP, BACnet, HTTP, FTP    | Emulates SCADA/ICS systems for industrial protocols.        | [GitHub Link](https://github.com/mushorg/conpot)          |
-| **T-Pot**     | Multi (Cowrie, Dionaea, etc.)      | Multi-honeypot platform for various protocols.              | [GitHub Link](https://github.com/telekom-security/tpotce) |
-| **Wordpot**   | HTTP (WordPress)                   | Emulates WordPress installations for CMS-specific attacks.  | [GitHub Link](https://github.com/gbrindisi/wordpot)       |
+| **Honeypot**  | **Supported Protocols**            | **Purpose**                                                                | **Repository**                                            |
+|---------------|------------------------------------|----------------------------------------------------------------------------|-----------------------------------------------------------|
+| **Cowrie**    | SSH, Telnet                        | Emulates SSH/Telnet to capture brute force attacks.                        | [GitHub Link](https://github.com/cowrie/cowrie)           |
+| **Kippo**     | SSH                                | Simulates a medium-interaction SSH server for attack logging and analysis. | [GitHub Link](https://github.com/desaster/kippo)          |
+| **Glastopf**  | HTTP                               | Emulates vulnerable web servers to capture attack patterns.                | [GitHub Link](https://github.com/mushorg/glastopf)        |
+| **Dionaea**   | SMB, HTTP, FTP, TFTP, MSSQL, MySQL | Catches malware and collects samples for analysis.                         | [GitHub Link](https://github.com/DinoTools/dionaea)       |
+| **Conpot**    | Modbus, SNMP, BACnet, HTTP, FTP    | Emulates SCADA/ICS systems for industrial protocols.                       | [GitHub Link](https://github.com/mushorg/conpot)          |
+| **Wordpot**   | HTTP (WordPress)                   | Emulates WordPress installations for CMS-specific attacks.                 | [GitHub Link](https://github.com/gbrindisi/wordpot)       |
+| **T-Pot**     | Multi (Cowrie, Dionaea, etc.)      | Multi-honeypot platform for various protocols.                             | [GitHub Link](https://github.com/telekom-security/tpotce) |
+| **Honeyd**    | TCP, UDP, ICMP                     | Simulates multiple hosts and services on a network.                        | [GitHub Link](https://github.com/DataSoft/Honeyd)         |
 
 ---
 
