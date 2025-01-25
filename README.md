@@ -29,10 +29,16 @@
      ```
      cd HoneyPott3r
      ```
-2. Install dependencies:
+2. Make Installer Script Executable:
      ```
-     pip install -r requirements.txt
+     chmod +x installer.sh
      ```
+3. Run the Installation Script
+     ```
+     ./installer.sh
+     ```
+4. Run the Tool using `honeypott3r` command.
+
 ---
 <!--
 ## Usage
