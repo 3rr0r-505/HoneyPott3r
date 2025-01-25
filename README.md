@@ -1,6 +1,26 @@
 # HoneyPott3r - Python Honeypot Vulnerability Scanner
 >### ⚙️ **This Project is under development.**
 
+<p align="center"> 
+<a href="https://www.python.org/"><img alt="" src="https://img.shields.io/badge/python-3.11%2B-blue?logo=python&logoColor=88d4d7"/></a>
+     &nbsp;
+<a href="https://www.gnu.org/software/bash/"><img alt="" src="https://img.shields.io/badge/bash-5.0+-lightgrey?logo=gnu-bash&logoColor=white"/></a>
+     &nbsp;
+<a href="https://www.json.org/"><img alt="" src="https://img.shields.io/badge/json-structured-lightblue?logo=json&logoColor=white"/></a>
+     &nbsp;
+<a href="https://www.mongodb.com/"><img alt="" src="https://img.shields.io/badge/mongodb-6.0+-green?logo=mongodb&logoColor=white"/></a>
+     &nbsp;
+<a href="https://nmap.org/"><img alt="" src="https://img.shields.io/badge/nmap-7.92+-blue?logo=nmap&logoColor=white"/></a>
+     &nbsp;
+<a href="https://www.metasploit.com/"><img alt="" src="https://img.shields.io/badge/metasploit-framework-red?logo=metasploit&logoColor=white"/></a>
+     &nbsp;
+<a href="https://www.openvas.org/"><img alt="" src="https://img.shields.io/badge/openvas-vulnerability%20scanner-green?logo=openvas&logoColor=white"/></a>
+     &nbsp;
+<a href="https://developer.mozilla.org/en-US/docs/Web"><img alt="" src="https://img.shields.io/badge/web%20technology-HTML%2FCSS%2FJS-blue?logo=html5&logoColor=white"/></a>
+     &nbsp;
+<a href="https://vercel.com/"><img alt="" src="https://img.shields.io/badge/vercel-deployment-black?logo=vercel&logoColor=white"/></a>
+</p>
+
 ## Project Overview
 HoneyPott3r is a Python-based honeypot that simulates various network services (e.g., HTTP, SSH, FTP, MySQL) to attract and log unauthorized access attempts. It enables monitoring and analysis of malicious traffic across multiple protocols, providing valuable insights for cybersecurity research.
 
