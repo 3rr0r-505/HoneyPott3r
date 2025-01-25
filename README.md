@@ -22,8 +22,10 @@
 </p>
 
 ## Project Overview
+<img align="right" alt="HoneyPott3r Logo" src="https://raw.githubusercontent.com/3rr0r-505/HoneyPott3r/main/HoneyPott3r-noBG-hex.png" width="400">
+<p align="left">
 HoneyPott3r is a Python-based honeypot that simulates various network services (e.g., HTTP, SSH, FTP, MySQL) to attract and log unauthorized access attempts. It enables monitoring and analysis of malicious traffic across multiple protocols, providing valuable insights for cybersecurity research.
-
+</p>
 
 ## Installation
 
