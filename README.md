@@ -1,16 +1,19 @@
 # HoneyPott3r - Python Honeypot Vulnerability Scanner
+
 >### ⚙️ **This Project is under development.**
 
 <p align="center"> 
 <a href="https://www.python.org/"><img alt="" src="https://img.shields.io/badge/python-3.11%2B-blue?logo=python&logoColor=88d4d7"/></a>
+<a href="https://pypi.org/project/requests/"><img alt="Dependency" src="https://img.shields.io/badge/pypi-dependency-orange?logo=pypi&logoColor=white"/></a>
 <a href="https://www.gnu.org/software/bash/"><img alt="" src="https://img.shields.io/badge/bash-5.0+-lightgrey?logo=gnu-bash&logoColor=white"/></a>
 <a href="https://www.json.org/"><img alt="" src="https://img.shields.io/badge/json-structured-lightblue?logo=json&logoColor=white"/></a>
-<a href="https://www.mongodb.com/"><img alt="" src="https://img.shields.io/badge/mongodb-6.0+-green?logo=mongodb&logoColor=white"/></a>
-<a href="https://nmap.org/"><img alt="" src="https://img.shields.io/badge/nmap-7.92+-blue?logo=nmap&logoColor=white"/></a>
+<a href="https://nmap.org/"><img alt="" src="https://img.shields.io/badge/nmap-Network%20Scnner-blue?logo=nmap&logoColor=white"/></a>
+<a href="https://www.openvas.org/"><img alt="" src="https://img.shields.io/badge/openvas-Vulnerability%20Scanner-green?logo=openvas&logoColor=white"/></a>
+<a href="https://cirt.net/Nikto2"><img alt="Nikto" src="https://img.shields.io/badge/Nikto-Web%20Server%20Scanner-89c3e4?logo=nikto&logoColor=white"/></a>
 <a href="https://www.metasploit.com/"><img alt="" src="https://img.shields.io/badge/metasploit-framework-red?logo=metasploit&logoColor=white"/></a>
-<a href="https://www.openvas.org/"><img alt="" src="https://img.shields.io/badge/openvas-vulnerability%20scanner-green?logo=openvas&logoColor=white"/></a>
 <a href="https://developer.mozilla.org/en-US/docs/Web"><img alt="" src="https://img.shields.io/badge/web%20technology-HTML%2FCSS%2FJS-blue?logo=html5&logoColor=white"/></a>
 <a href="https://vercel.com/"><img alt="" src="https://img.shields.io/badge/vercel-deployment-black?logo=vercel&logoColor=white"/></a>
+<a href="https://www.mongodb.com/"><img alt="" src="https://img.shields.io/badge/mongoDB-Atlas-green?logo=mongodb&logoColor=white"/></a>
 <a href="https://www.kali.org/"><img alt="Kali Linux" src="https://img.shields.io/badge/Kali%20Linux-2024.4-blue?logo=kali-linux&logoColor=white"/></a>
 </p>
 
