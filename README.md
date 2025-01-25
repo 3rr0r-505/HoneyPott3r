@@ -3,28 +3,21 @@
 
 <p align="center"> 
 <a href="https://www.python.org/"><img alt="" src="https://img.shields.io/badge/python-3.11%2B-blue?logo=python&logoColor=88d4d7"/></a>
-     &nbsp;
 <a href="https://www.gnu.org/software/bash/"><img alt="" src="https://img.shields.io/badge/bash-5.0+-lightgrey?logo=gnu-bash&logoColor=white"/></a>
-     &nbsp;
 <a href="https://www.json.org/"><img alt="" src="https://img.shields.io/badge/json-structured-lightblue?logo=json&logoColor=white"/></a>
-     &nbsp;
 <a href="https://www.mongodb.com/"><img alt="" src="https://img.shields.io/badge/mongodb-6.0+-green?logo=mongodb&logoColor=white"/></a>
-     &nbsp;
 <a href="https://nmap.org/"><img alt="" src="https://img.shields.io/badge/nmap-7.92+-blue?logo=nmap&logoColor=white"/></a>
-     &nbsp;
 <a href="https://www.metasploit.com/"><img alt="" src="https://img.shields.io/badge/metasploit-framework-red?logo=metasploit&logoColor=white"/></a>
-     &nbsp;
 <a href="https://www.openvas.org/"><img alt="" src="https://img.shields.io/badge/openvas-vulnerability%20scanner-green?logo=openvas&logoColor=white"/></a>
-     &nbsp;
 <a href="https://developer.mozilla.org/en-US/docs/Web"><img alt="" src="https://img.shields.io/badge/web%20technology-HTML%2FCSS%2FJS-blue?logo=html5&logoColor=white"/></a>
-     &nbsp;
 <a href="https://vercel.com/"><img alt="" src="https://img.shields.io/badge/vercel-deployment-black?logo=vercel&logoColor=white"/></a>
+<a href="https://www.kali.org/"><img alt="Kali Linux" src="https://img.shields.io/badge/Kali%20Linux-2024.4-blue?logo=kali-linux&logoColor=white"/></a>
 </p>
 
 ## Project Overview
-<img align="right" alt="HoneyPott3r Logo" src="https://raw.githubusercontent.com/3rr0r-505/HoneyPott3r/main/HoneyPott3r-noBG-hex.png" width="400">
+<img align="right" alt="HoneyPott3r Logo" src="https://raw.githubusercontent.com/3rr0r-505/HoneyPott3r/main/HoneyPott3r-noBG-hex1.png" width="250">
 <p align="left">
-HoneyPott3r is a Python-based honeypot that simulates various network services (e.g., HTTP, SSH, FTP, MySQL) to attract and log unauthorized access attempts. It enables monitoring and analysis of malicious traffic across multiple protocols, providing valuable insights for cybersecurity research.
+<b>HoneyPott3r</b> is a Python-based honeypot vulnerability scanner designed to simulate various network services to attract, detect, and log unauthorized access attempts. By integrating with popular cybersecurity tools like <b>Nmap, Metasploit, OpenVAS, and Nikto</b>; HoneyPott3r enhances its ability to identify vulnerabilities across multiple protocols and services, providing comprehensive threat detection and analysis. The tool not only identifies common attack vectors but also integrates various detection mechanisms to identify malicious behavior in real-time. This makes it a powerful tool for cybersecurity research, penetration testing, and vulnerability assessment.
 </p>
 
 ## Installation
@@ -40,6 +33,7 @@ HoneyPott3r is a Python-based honeypot that simulates various network services (
      ```
      pip install -r requirements.txt
      ```
+---
 <!--
 ## Usage
 - Start all honeypot services:
