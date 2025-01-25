@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Installation script for honeypott3r
+# add the shebang (#!/usr/bin/env python3) to the main script (main.py) since it is the entry point. Other module files don't need it.
 
 echo "Installing HoneyPott3r..."
 
