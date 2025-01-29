@@ -18,7 +18,7 @@
 </p>
 
 ## Project Overview
-<img align="right" alt="HoneyPott3r Logo" src="https://raw.githubusercontent.com/3rr0r-505/HoneyPott3r/main/HoneyPott3r-noBG-hex1.png" width="250">
+<img align="right" alt="HoneyPott3r Logo" src="https://raw.githubusercontent.com/3rr0r-505/HoneyPott3r/main/img/HoneyPott3r-noBG-hex1.png" width="250">
 <p align="left">
 <b>HoneyPott3r</b> is a Python-based honeypot vulnerability scanner designed to simulate various network services to attract, detect, and log unauthorized access attempts. By integrating with popular cybersecurity tools like <b>Nmap, Metasploit, OpenVAS, and Nikto</b>; HoneyPott3r enhances its ability to identify vulnerabilities across multiple protocols and services, providing comprehensive threat detection and analysis. The tool not only identifies common attack vectors but also integrates various detection mechanisms to identify malicious behavior in real-time. This makes it a powerful tool for cybersecurity research, penetration testing, and vulnerability assessment.
 </p>
