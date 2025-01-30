@@ -1,3 +1,8 @@
+##################################################
+# Note: main.py is not completed!
+# Note: implement after completing modules! 
+##################################################
+
 # importing libraries
 import os
 import time
