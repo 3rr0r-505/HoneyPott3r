@@ -1,10 +1,12 @@
+# importing libraries
 import os
 import time
-from utils.logger import log_event
+import json
+import datetime
 from tools import nmap_scan, nikto_scan, metasploit_exploit, openvas_scan
 from modules import (
     honeypot_detection, privilege_escalation, code_injection, 
-    data_leakage, reverse_exploitation, service_crash, dos_attack, evading_logs
+    data_leakage, reverse_exploit, service_crash, dos_attack, evading_logs
 )
 
 # ASCII Banner
@@ -18,60 +20,123 @@ BANNER = r"""
 ##                                    /____/                                                       ## 
 #####################################################################################################                                
 """
-RESULTS_DIR = "results"
 
-# Ensure results directory exists
-os.makedirs(RESULTS_DIR, exist_ok=True)
+# Menu 
+MENU = r"""
+[#] Welcome to HoneyPott3r! developed by 5pyd3r!!
+[#] Here's the list of operations.
+
+[!] Scans:
+[1] Nmap scan
+[2] Nikto scan
+[3] OpenVAS scan
+[4] Metasploit scan
+
+[!] Attacks:
+[1] Honeypot Detection
+[2] Code Injection
+[3] Data Leakage
+[4] Denial of Service
+[5] Evading Logs
+[6] Service Crash
+[7] Reverse Exploitation
+[8] Privilege Escalation
+
+[!] Commands:
+[1] To Start the Scan use 'start'
+[2] To run the Scan use 'scan'
+[3] To reset the credentials use 'reset'
+[4] To Exit use 'exit'
+"""
+
+LOGS_DIR = "logs"  # Store all logs inside this directory
+os.makedirs(LOGS_DIR, exist_ok=True)  # Ensure logs directory exists
+
+def get_timestamp():
+    """Returns a timestamp string for folder naming."""
+    return datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
 def user_input(prompt):
     """Handles user input with proper formatting"""
-    return input(f"HoneyPott3r > {prompt}: ").strip()
+    return input(f"HoneyPott3r > {prompt}: ").strip().lower()
 
-def run_scan(scan_module, log_file):
+def run_scan(scan_module, result_dir):
     """Runs a scan and logs results"""
-    log_event(f"Running {scan_module.__name__}...")
-    results = scan_module.run()
-    with open(f"{RESULTS_DIR}/{log_file}", "a") as f:
-        f.write(results + "\n")
-    log_event(f"{scan_module.__name__} completed.")
+    scan_module.run(result_dir)
 
-def run_attack(attack_module, log_file):
+def run_attack(attack_module, result_dir):
     """Runs an attack and logs results"""
-    log_event(f"Executing attack module: {attack_module.__name__}...")
-    results = attack_module.run()
-    with open(f"{RESULTS_DIR}/{log_file}", "a") as f:
-        f.write(results + "\n")
-    log_event(f"{attack_module.__name__} completed.")
+    attack_module.run(result_dir)
 
 def main():
-    print(BANNER)
+    print(BANNER)  # Show banner initially
+    print(MENU)  # Show menu initially
     
-    # Take user inputs
-    test_name = user_input("Set the test name")
-    honeypot_type = user_input("Set the honeypot type")
-    honeypot_creds = user_input("Set the honeypot credentials")
+    while True:
+        command = user_input("Enter your command")
 
-    log_event(f"Test: {test_name} | Honeypot: {honeypot_type} | Credentials: {honeypot_creds}")
-    
-    print("\n[*] Testing initiated.....\n")
-    time.sleep(2)
+        # Start the test
+        if command == "start":
+            print(MENU)  # Always show menu after each scan
+            
+            # Take user inputs for test parameters
+            test_name = user_input("Set the test name")
+            honeypot_type = user_input("Set the honeypot type")
+            honeypot_creds = user_input("Set the honeypot credentials")
 
-    # Run scanning tools
-    run_scan(nmap_scan, "scan_results.log")
-    run_scan(nikto_scan, "scan_results.log")
-    run_scan(metasploit_exploit, "attack_exploits.log")
-    run_scan(openvas_scan, "scan_results.log")
+            config_data = {
+                "test_name": test_name,
+                "honeypot_type": honeypot_type,
+                "honeypot_creds": honeypot_creds
+            }
+            os.makedirs("temp", exist_ok=True)
+            config_path = os.path.join("temp", "config.json")
+            with open(config_path, "w") as config_file:
+                json.dump(config_data, config_file, indent=4)
 
-    # Run attack modules
-    attack_modules = [
-        honeypot_detection, privilege_escalation, code_injection, 
-        data_leakage, reverse_exploitation, service_crash, dos_attack, evading_logs
-    ]
-    
-    for attack in attack_modules:
-        run_attack(attack, "attack_exploits.log")
+            # Create results directory using test_name and timestamp
+            results_folder = f"results/{test_name}-{get_timestamp()}"
+            os.makedirs(results_folder, exist_ok=True)
 
-    print("\n[+] Testing complete. Results stored in the results directory.")
+            print("\n[*] Testing initiated.....\n")
+            time.sleep(2)
+
+        # Initiating Scans
+        elif command == "scan":
+            print("\n[*] Running Scans and Attacks...\n")
+
+            # Run scanning tools
+            run_scan(nmap_scan,results_folder)
+            run_scan(nikto_scan,results_folder)
+            run_scan(metasploit_exploit,results_folder)
+            run_scan(openvas_scan,results_folder)
+
+            # Run attack modules
+            attack_modules = [
+                honeypot_detection, privilege_escalation, code_injection, 
+                data_leakage, reverse_exploit, service_crash, dos_attack, evading_logs
+            ]
+            for attack in attack_modules:
+                run_attack(attack, results_folder)
+
+            print("\n[+] Testing complete!\n")
+            os.rmdir("temp")
+
+        # Reset the Credentials
+        elif command == "reset":
+            print("[!] Resetting credentials...")
+            test_name = None
+            honeypot_type = None
+            honeypot_creds = None
+            print("[+] Credentials have been reset.\n")
+
+        # Exit the loop and terminate the script
+        elif command == "exit":
+            print("[!] Exiting HoneyPott3r...")
+            break  
+
+        else:
+            print("[!] Invalid command. Please try again.")
 
 if __name__ == "__main__":
     main()
