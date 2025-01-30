@@ -40,6 +40,7 @@ HoneyPott3r/
 │
 └── utils/                      # Helper functions & utilities
     ├── logger.py               # Logging functionality
+    ├── mongo_loader.py         # load reports to mongodb
     ├── network_utils.py        # Network-related utilities (e.g., port scan, ping)
     └── config_loader.py        # Load configuration files
 ```
