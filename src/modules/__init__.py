@@ -1,5 +1,6 @@
 # utils modules
-from .config_loader import configJSON
+from utils.config_loader import configJSON
+from utils.ssh_connect import ConnectSSH
 
 # attack modules
 from .code_injection import codeInjection
