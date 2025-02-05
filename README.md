@@ -38,10 +38,15 @@
      ```
 3. Run the Installation Script
      ```
-     ./installer.sh
+     sudo ./installer.sh
      ```
-4. Run the Tool using `honeypott3r` command.
+4. Run the Tool using `sudo honeypott3r` command.
 
+## Uninstallation
+- To Uninstall HoneyPott3r :
+     ```
+     sudo /opt/honeypott3r/uninstall.sh
+     ```
 ---
 <!--
 ## Usage
