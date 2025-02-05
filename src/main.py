@@ -8,11 +8,12 @@ import os
 import time
 import json
 import datetime
-# from tools import nmap_scan, nikto_scan, metasploit_exploit, openvas_scan
+# from tools import nmapScan, niktoScan, msfScan, openVASScan
 # from modules import (
-#     honeypot_detection, privilege_escalation, code_injection, 
-#     data_leakage, reverse_exploit, service_crash, dos_attack, evading_logs
+#     detectHoneypot, codeInjection, dataLeakage, 
+#     denialOfService, logsEvasion, privEsc, revExploit, tarBomb
 # )
+from utils import mongoLoader
 
 # ASCII Banner
 BANNER = r"""
@@ -63,7 +64,7 @@ config_path = os.path.join(config_dir, "config.json")
 
 def get_timestamp():
     """Returns a timestamp string for folder naming."""
-    return datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    return datetime.datetime.now().strftime("%Y-%m-%d::%H:%M:%S")
 
 def user_input(prompt):
     """Handles user input with proper formatting"""
@@ -118,7 +119,8 @@ def main():
             # metasploit_exploit.msf()
 
             # # Run attack modules
-            # honeypot_detection.detectHoneypot() 
+            # detection = detectHoneypot()
+            # detection_result = detection.detect() 
             # privilege_escalation.privilegeEscalation()
             # code_injection.codeInjection()
             # data_leakage.dataLeakage() 
@@ -126,6 +128,43 @@ def main():
             # service_crash.serviceCrash() 
             # dos_attack.dos() 
             # evading_logs.logsEvade()
+            
+            # [!] report format
+            report_data = {
+                "name": test_name,
+                "Date&Time": get_timestamp(),
+                "used creds": 
+                {
+                    "ipv4": ipv4,
+                    "port": port_no,
+                    "username": uname,
+                    "password": passwd,
+                    "http-link": link
+                },
+                "scans": 
+                {
+                    "nmap_scan": "<nmap-report>",
+                    "openVAS_scan": "<openVAS-report>",
+                    "nikto_scan": "<nikto-report>",
+                    "msf_scan": ["cve-1","cve-2","cve-3","cve-4"]
+                },
+                "attacks":
+                {
+                    "honeypot_detection": "detection_result",  
+                    "code_injection": "codeInjection_result",       
+                    "data_leakage": "dataLeakage_result",
+                    "evading_logs": "logEvasion_result",         
+                    "reverse_exploitation": "revExploit_result", 
+                    "service_crash": "tarBomb_result",       
+                    "dos_attack": "dos_result",           
+                    "privilege_escalation": "privEsc_result"
+                }
+            }
+            
+            # Create an instance of MongoLoader
+            mongo_loader = mongoLoader()
+            # Uploading report data to MongoDB using the MongoLoader class
+            mongo_loader.upload(report_data)
             
             time.sleep(2)
             print("\n[+] Testing complete!\n")
