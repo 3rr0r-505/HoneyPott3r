@@ -5,6 +5,7 @@
 
 # importing libraries
 import os
+import sys
 import time
 import json
 import datetime
@@ -14,6 +15,11 @@ import datetime
 #     denialOfService, logsEvasion, privEsc, revExploit, tarBomb
 # )
 from utils import mongoLoader
+
+# Check if the script is run as root (UID 0)
+# if os.geteuid() != 0:
+#     print("[!] This script must be run as root. Please use 'sudo'.")
+#     sys.exit(1)
 
 # ASCII Banner
 BANNER = r"""

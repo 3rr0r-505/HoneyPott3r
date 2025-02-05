@@ -21,10 +21,13 @@ mkdir -p "$INSTALL_DIR"
 cp -r ./* "$INSTALL_DIR"
 
 # Ensure the main script is executable
-chmod +x "$INSTALL_DIR/main.py"
+chmod +x "$INSTALL_DIR/src/main.py"
+
+# Ensure the main script is executable
+chmod +x "$INSTALL_DIR/uninstall.sh"
 
 # Create a symlink in /usr/local/bin to make it globally accessible
-ln -sf "$INSTALL_DIR/main.py" /usr/local/bin/honeypott3r
+ln -sf "$INSTALL_DIR/src/main.py" /usr/local/bin/honeypott3r
 
 # Install Python dependencies
 if [ -f "$INSTALL_DIR/requirements.txt" ]; then
