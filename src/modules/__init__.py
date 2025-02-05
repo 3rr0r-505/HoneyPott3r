@@ -1,3 +1,7 @@
+# utils modules
+from .config_loader import configJSON
+
+# attack modules
 from .code_injection import codeInjection
 from .data_leakage import dataLeakage
 from .dos_attack import denialOfService
