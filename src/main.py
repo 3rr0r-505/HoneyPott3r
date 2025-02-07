@@ -91,26 +91,21 @@ def main():
             test_name = user_input("Set the test name")
             honeypot_type = user_input("Set the honeypot type")
             user_input("::Set the honeypot credentials (press enter):")
-            # ipv4 = user_input("Set the honeypot ipv4 address [if not available, type 'null']")
+            ipv4 = user_input("Set the honeypot ipv4 address [if not available, type 'null']")
             port_no = user_input("Set the honeypot port no [if not available, type 'null']")
-            # uname = user_input("Set the honeypot username [if not available, type 'null']")
-            # passwd = user_input("Set the honeypot password [if not available, type 'null']")
-            # link = user_input("Set the honeypot http-link [if not available, type 'null']")
+            uname = user_input("Set the honeypot username [if not available, type 'null']")
+            passwd = user_input("Set the honeypot password [if not available, type 'null']")
+            link = user_input("Set the honeypot http-link [if not available, type 'null']")
 
             config_data = {
                 "test_name": test_name,
                 "honeypot_type": honeypot_type,
                 "honeypot_creds": {
-                    "ip": "54.160.218.15",
+                    "ip": ipv4,
                     "ports": port_no,
-                    "username": "root",
-                    "password": "",
-                    "http-link": "http://54.160.218.15:8800/"
-                    # "ip": ipv4,
-                    # "ports": port_no,
-                    # "username": uname,
-                    # "password": passwd,
-                    # "http-link": link
+                    "username": uname,
+                    "password": passwd,
+                    "http-link": link
                 }
             }
             os.makedirs("config", exist_ok=True)
