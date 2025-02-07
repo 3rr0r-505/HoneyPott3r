@@ -9,6 +9,7 @@ import sys
 import time
 import json
 import datetime
+from modules import detectHoneypot
 # from tools import nmapScan, niktoScan, msfScan, openVASScan
 # from modules import (
 #     detectHoneypot, codeInjection, dataLeakage, 
@@ -90,21 +91,26 @@ def main():
             test_name = user_input("Set the test name")
             honeypot_type = user_input("Set the honeypot type")
             user_input("::Set the honeypot credentials (press enter):")
-            ipv4 = user_input("Set the honeypot ipv4 address [if not available, type 'null']")
+            # ipv4 = user_input("Set the honeypot ipv4 address [if not available, type 'null']")
             port_no = user_input("Set the honeypot port no [if not available, type 'null']")
-            uname = user_input("Set the honeypot username [if not available, type 'null']")
-            passwd = user_input("Set the honeypot password [if not available, type 'null']")
-            link = user_input("Set the honeypot http-link [if not available, type 'null']")
+            # uname = user_input("Set the honeypot username [if not available, type 'null']")
+            # passwd = user_input("Set the honeypot password [if not available, type 'null']")
+            # link = user_input("Set the honeypot http-link [if not available, type 'null']")
 
             config_data = {
                 "test_name": test_name,
                 "honeypot_type": honeypot_type,
                 "honeypot_creds": {
-                    "ip": ipv4,
+                    "ip": "54.160.218.15",
                     "ports": port_no,
-                    "username": uname,
-                    "password": passwd,
-                    "http-link": link
+                    "username": "root",
+                    "password": "",
+                    "http-link": "http://54.160.218.15:8800/"
+                    # "ip": ipv4,
+                    # "ports": port_no,
+                    # "username": uname,
+                    # "password": passwd,
+                    # "http-link": link
                 }
             }
             os.makedirs("config", exist_ok=True)
@@ -125,8 +131,9 @@ def main():
             # metasploit_exploit.msf()
 
             # # Run attack modules
-            # detection = detectHoneypot()
-            # detection_result = detection.detect() 
+            detection = detectHoneypot()
+            detection_result = detection.detect()
+            print(detection_result)
             # privilege_escalation.privilegeEscalation()
             # code_injection.codeInjection()
             # data_leakage.dataLeakage() 
@@ -136,41 +143,41 @@ def main():
             # evading_logs.logsEvade()
             
             # [!] report format
-            report_data = {
-                "name": test_name,
-                "Date&Time": get_timestamp(),
-                "used creds": 
-                {
-                    "ipv4": ipv4,
-                    "port": port_no,
-                    "username": uname,
-                    "password": passwd,
-                    "http-link": link
-                },
-                "scans": 
-                {
-                    "nmap_scan": "<nmap-report>",
-                    "openVAS_scan": "<openVAS-report>",
-                    "nikto_scan": "<nikto-report>",
-                    "msf_scan": ["cve-1","cve-2","cve-3","cve-4"]
-                },
-                "attacks":
-                {
-                    "honeypot_detection": "detection_result",  
-                    "code_injection": "codeInjection_result",       
-                    "data_leakage": "dataLeakage_result",
-                    "evading_logs": "logEvasion_result",         
-                    "reverse_exploitation": "revExploit_result", 
-                    "service_crash": "tarBomb_result",       
-                    "dos_attack": "dos_result",           
-                    "privilege_escalation": "privEsc_result"
-                }
-            }
+            # report_data = {
+            #     "name": test_name,
+            #     "Date&Time": get_timestamp(),
+            #     "used creds": 
+            #     {
+            #         "ipv4": ipv4,
+            #         "port": port_no,
+            #         "username": uname,
+            #         "password": passwd,
+            #         "http-link": link
+            #     },
+            #     "scans": 
+            #     {
+            #         "nmap_scan": "<nmap-report>",
+            #         "openVAS_scan": "<openVAS-report>",
+            #         "nikto_scan": "<nikto-report>",
+            #         "msf_scan": ["cve-1","cve-2","cve-3","cve-4"]
+            #     },
+            #     "attacks":
+            #     {
+            #         "honeypot_detection": "detection_result",  
+            #         "code_injection": "codeInjection_result",       
+            #         "data_leakage": "dataLeakage_result",
+            #         "evading_logs": "logEvasion_result",         
+            #         "reverse_exploitation": "revExploit_result", 
+            #         "service_crash": "tarBomb_result",       
+            #         "dos_attack": "dos_result",           
+            #         "privilege_escalation": "privEsc_result"
+            #     }
+            # }
             
-            # Create an instance of MongoLoader
-            mongo_loader = mongoLoader()
-            # Uploading report data to MongoDB using the MongoLoader class
-            mongo_loader.upload(report_data)
+            # # Create an instance of MongoLoader
+            # mongo_loader = mongoLoader()
+            # # Uploading report data to MongoDB using the MongoLoader class
+            # mongo_loader.upload(report_data)
             
             time.sleep(2)
             print("\n[+] Testing complete!\n")
