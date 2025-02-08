@@ -38,3 +38,11 @@
     steps:
       - input: "GET /index.html HTTP/1.1\n\n"
         output: "Overview - Siemens, SIMATIC, S7-200"
+
+8080:
+  - name: "wordpot"
+    steps:
+      - input: "GET / HTTP/1.1\n\n"
+        output: "Random Ramblings | Just another WordPress site"
+      - input: "GET / HTTP/1.1\n\n"
+        output: '<meta name="generator" content="WordPress 2.8" />'
