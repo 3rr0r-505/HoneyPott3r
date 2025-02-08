@@ -97,6 +97,43 @@ class detectHoneypot:
                     return True  # Conpot detected
         return False
 
+    def detect_wordpot(self, ip, port):
+        """Detects Wordpot honeypot by extracting the title and meta generator tag."""
+        
+        # Run netcat command to extract both title and meta generator
+        command = f'printf "GET / HTTP/1.1\\r\\nHost: {ip}\\r\\nConnection: close\\r\\n\\r\\n" | nc -w 10 -v {ip} {port} | grep -i -E "<title>|<meta name=\\"generator\\""'
+        response = self.run_nc(command)
+
+        print(f"[*] Wordpot Response:\n{response}")  # Debugging print
+
+        # Extract title
+        title_match = re.search(r"<title>(.*?)</title>", response, re.IGNORECASE | re.DOTALL)
+        extracted_title = title_match.group(1).strip() if title_match else ""
+
+        # Extract meta generator
+        meta_match = re.search(r'<meta name="generator" content="(.*?)"\s*/?>', response, re.IGNORECASE | re.DOTALL)
+        extracted_meta = meta_match.group(1).strip() if meta_match else ""
+
+        print(f"[*] Extracted HTML Title: '{extracted_title}'")  # Debugging print
+        print(f"[*] Extracted Meta Generator: '{extracted_meta}'")  # Debugging print
+
+        # Ensure signatures are loaded properly
+        wordpot_signatures = self.signatures.get("8080", [])
+        print(f"[*] Loaded Signatures for 8080: {wordpot_signatures}")
+
+        # Compare extracted title/meta with expected signatures
+        for entry in wordpot_signatures:
+            for step in entry.get("steps", []):
+                expected_output = step.get("output", "").strip()
+
+                print(f"[*] Checking Signature: '{expected_output}'")  # Debugging print
+
+                if extracted_title == expected_output or extracted_meta == expected_output:
+                    print("[+] Wordpot Honeypot Detected!")
+                    return True  # Wordpot detected
+
+        return False  # No match found
+
     def detect(self):
         """Main function to detect Cowrie (SSH) and Conpot (HTTP) honeypots using Netcat."""
         hp_type = self.config["honeypot_type"].lower()
@@ -106,8 +143,10 @@ class detectHoneypot:
 
         if hp_type == "ssh":
             result = self.detect_cowrie(ip, port)
-        elif hp_type == "http":
+        elif hp_type == "http" and port == "8800":
             result = self.detect_conpot(ip, port)
+        elif hp_type == "http" and port == "8080":
+            result = self.detect_wordpot(ip, port)
         else:
             print(f"[!] Not avilable for {hp_type} honeypot.")
             return False
