@@ -10,9 +10,12 @@ import time
 import json
 import datetime
 from modules import detectHoneypot
+from modules import revExploit
+from modules import privEsc
+from tools import msfScan
 # from tools import nmapScan, niktoScan, msfScan, openVASScan
 # from modules import (
-#     detectHoneypot, codeInjection, dataLeakage, 
+#     detectHoneypot, codeInjection, dataLeakage,
 #     denialOfService, logsEvasion, privEsc, revExploit, tarBomb
 # )
 from utils import mongoLoader
@@ -118,25 +121,54 @@ def main():
         # Initiating Scans
         elif command == "scan":
             print("\n[*] Running Scans and Attacks...\n")
-
-            # # Run scanning tools
-            # nmap_scan.nmap()
-            # openvas_scan.openvas()
-            # nikto_scan.nikto()
-            # metasploit_exploit.msf()
-
-            # # Run attack modules
-            detection = detectHoneypot()
-            detection_result = detection.detect()
-            print(detection_result)
-            # privilege_escalation.privilegeEscalation()
+            start_time = time.time()
+            # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            #       Run attack modules
+            # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            # ================Honeypot Detection==================
+            # detection = detectHoneypot()
+            # detection_result = detection.detect()
+            # print(detection_result)
+            # ================Privilege Escalation================
+            # privChker = privEsc()
+            # privEsc_result = privChker.scanImage()
+            # print("\n\n[+]Privilege Escalation final report:")
+            # print(privEsc_result)
+            # print(f"\nCVE count: {len(privEsc_result)}")
+            # print(type(privEsc_result))
+            # ================Reverse Exploitation================
+            # exploit = revExploit()
+            # revExplt_result = exploit.explt() # this is a list
+            # print("\n\n")
+            # print("[+] here's the result of Reverse Exploitation:")
+            # print(revExplt_result)
+            # print("\n\n")
+            # print(type(revExplt_result))
+            # =======================================
             # code_injection.codeInjection()
             # data_leakage.dataLeakage() 
-            # reverse_exploit.reverseExploit() 
             # service_crash.serviceCrash() 
             # dos_attack.dos() 
             # evading_logs.logsEvade()
             
+            # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            #       Run scanning tools
+            # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            # nmap_scan.nmap()
+            # openvas_scan.openvas()
+            # nikto_scan.nikto()
+            # ================Metasploit Scan================
+            # msfModules = msfScan()
+            # msf_result = msfModules.msfScan(privEsc_result) # this is a list
+            # print("\n\n")
+            # print("[+] here's the result of msf modules:")
+            # print(msf_result)
+            # print("\n\n\n")
+            # print(type(msf_result))
+
+            # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            #       Making report to upload
+            # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             # [!] report format
             # report_data = {
             #     "name": test_name,
@@ -169,6 +201,10 @@ def main():
             #     }
             # }
             
+
+            # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            #       Running utils
+            # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             # # Create an instance of MongoLoader
             # mongo_loader = mongoLoader()
             # # Uploading report data to MongoDB using the MongoLoader class
@@ -176,6 +212,10 @@ def main():
             
             time.sleep(2)
             print("\n[+] Testing complete!\n")
+            end_time = time.time()  # End timer
+            duration = end_time - start_time  # Calculate duration
+            minutes, seconds = divmod(duration, 60)
+            print(f"[+] Execution time: {int(minutes)} min {seconds:.2f} sec")
             time.sleep(2)
             print(MENU) 
 
