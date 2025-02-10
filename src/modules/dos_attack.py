@@ -20,8 +20,8 @@ class DenialOfService:
         self.port = int(self.creds["ports"])
         self.test_name = self.config["test_name"]
         self.successful_attack = None
-        self.results_dir = Path(__file__).parent.parent / "results"
-        self.results_dir.mkdir(parents=True, exist_ok=True)
+        # self.results_dir = Path(__file__).parent.parent / "results"
+        # self.results_dir.mkdir(parents=True, exist_ok=True)
         self.service_down_detected = False
         self.attack_duration = attack_duration * 60  # Convert minutes to seconds
 
