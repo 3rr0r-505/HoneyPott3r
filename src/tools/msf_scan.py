@@ -58,6 +58,7 @@ class msfScan:
         Returns:
             dict: Mapping of CVEs to available MSF modules, or a message if none are found.
         """
+        print("\n===============Metasploit Scan Report===============\n")
         with ThreadPoolExecutor(max_workers=15) as executor:
             try:
                 future_to_cve = {executor.submit(self.run_msf_search, cve): cve for cve in cve_dict.keys()}
