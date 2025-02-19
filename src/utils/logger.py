@@ -1,3 +1,4 @@
+import re
 import sys
 import pathlib
 import datetime
@@ -19,8 +20,8 @@ class Logger:
         log_dir = pathlib.Path(__file__).resolve().parent.parent / "logs"  
         log_dir.mkdir(parents=True, exist_ok=True)
 
-        timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        self.log_file = log_dir / f"ScanResult_{timestamp}.log"
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d::%H:%M:%S")
+        self.log_file = log_dir / f"ScanResult@{timestamp}.log"
 
         self.terminal = sys.stdout
         self.log = self.log_file.open("w", encoding="utf-8")
@@ -34,11 +35,16 @@ class Logger:
             self.logging_enabled = True
         sys.stdout = self  # Redirect stdout
 
+    def remove_ansi(self, text):
+        """Remove ANSI escape sequences from the given text."""
+        return re.sub(r'\x1b\[[0-9;]*[mK]', '', text)
+
     def write(self, message):
         self.terminal.write(message)
         self.terminal.flush()
         if self.logging_enabled:
-            self.log.write(message)
+            clean_message = self.remove_ansi(message)
+            self.log.write(clean_message)
             self.log.flush()
 
     def flush(self):
