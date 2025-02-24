@@ -46,7 +46,9 @@
 ## Uninstallation
 - To Uninstall HoneyPott3r :
      ```
-     sudo /opt/honeypott3r/uninstall.sh
+     cd /opt/honeypott3r
+     chmod +x uninstall.sh
+     sudo ./uninstall.sh
      ```
 ---
 <!--
