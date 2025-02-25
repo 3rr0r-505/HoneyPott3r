@@ -1,6 +1,7 @@
 # HoneyPott3r - Python Honeypot Vulnerability Scanner
 
 >### ⚙️ **This Project is under development.**
+>### 📖 **For detailed guidance, check out the [HoneyPott3r wiki](https://github.com/3rr0r-505/HoneyPott3r/wiki)📚**
 
 <p align="center"> 
 <a href="https://www.python.org/"><img alt="" src="https://img.shields.io/badge/python-3.11%2B-blue?logo=python&logoColor=88d4d7"/></a>
@@ -45,7 +46,9 @@
 ## Uninstallation
 - To Uninstall HoneyPott3r :
      ```
-     sudo /opt/honeypott3r/uninstall.sh
+     cd /opt/honeypott3r
+     chmod +x uninstall.sh
+     sudo ./uninstall.sh
      ```
 ---
 <!--

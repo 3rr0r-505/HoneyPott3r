@@ -1,6 +1,6 @@
 # Contributing to HoneyPott3r
 
-Thank you for considering contributing to KeySpy! We appreciate your interest in making our project better.
+Thank you for considering contributing to HoneyPott3r! We appreciate your interest in making our project better.
 
 ## Getting Started
 
@@ -40,7 +40,7 @@ If you find a bug, have a question, or want to suggest a new feature, you can cr
    - Keep your code clean and well-documented.
 
 ### License
-By contributing to NetWhisper, you agree that your contributions will be licensed under the MIT License.
+By contributing to HoneyPott3r, you agree that your contributions will be licensed under the MIT License.
 
 ### Questions and Feedback
 If you have any questions or need further assistance, feel free to reach out in the Issues section.
