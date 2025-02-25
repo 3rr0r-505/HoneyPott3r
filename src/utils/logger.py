@@ -21,7 +21,8 @@ class Logger:
         log_dir.mkdir(parents=True, exist_ok=True)
 
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d::%H:%M:%S")
-        self.log_file = log_dir / f"ScanResult@{timestamp}.log"
+        self.log_filename = f"ScanResult@{timestamp}.log"
+        self.log_file = log_dir / self.log_filename
 
         self.terminal = sys.stdout
         self.log = self.log_file.open("w", encoding="utf-8")
@@ -57,3 +58,4 @@ class Logger:
         sys.stdout = self.terminal  # Restore normal stdout
         self.logging_enabled = False
         self.log.close()
+        return self.log_filename
