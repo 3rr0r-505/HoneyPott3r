@@ -31,6 +31,6 @@ fi
 
 # Inform the user about optional removals
 echo -e "\n[!] Optional Cleanup Steps:"
-echo "[>] System Tools to remove: netcat trivy bandit safety nmap nikto wpscan msfconsole mongoDB"
+echo "[>] System Tools to remove: netcat trivy bandit safety nmap nikto wpscan msfconsole mongoDB docker"
 
 echo -e "\n[*] HoneyPott3r has been uninstalled successfully!"
