@@ -1,7 +1,7 @@
-paramiko  
+paramiko
 requests
 scapy
-pymongo 
-pyyaml  
-tabulate  
-python-dotenv  
+pymongo
+yaml
+tabulate
+dotenv
