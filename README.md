@@ -1,6 +1,6 @@
 # HoneyPott3r - Python Honeypot Vulnerability Scanner
 
->### ⚙️ **This Project is under development.**
+>### ⚙️ **This project is currently at version 1.0.0**
 >### 📖 **For detailed guidance, check out the [HoneyPott3r wiki](https://github.com/3rr0r-505/HoneyPott3r/wiki)📚**
 
 <p align="center"> 
