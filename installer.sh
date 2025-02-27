@@ -110,7 +110,7 @@ chk_tools(){
     INSTALLED_TOOLS=()
     MISSING_TOOLS=()
 
-    for tool in netcat trivy bandit wpscan nmap nikto msfconsole mongod; do
+    for tool in netcat trivy bandit wpscan nmap nikto msfconsole mongod docker; do
         if command -v "$tool" &> /dev/null; then
             INSTALLED_TOOLS+=("$tool")
         else
