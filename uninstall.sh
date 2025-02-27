@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Uninstallation script for honeypott3r
+# Uninstallation script for HoneyPott3r
 
 # Ensure the script is run as root
 if [ "$EUID" -ne 0 ]; then
@@ -29,4 +29,8 @@ else
     echo "[!] Symlink not found, skipping removal."
 fi
 
-echo "[*] HoneyPott3r has been uninstalled successfully!"
+# Inform the user about optional removals
+echo -e "\n[!] Optional Cleanup Steps:"
+echo "[>] System Tools to remove: netcat trivy bandit safety nmap nikto wpscan msfconsole mongoDB"
+
+echo -e "\n[*] HoneyPott3r has been uninstalled successfully!"
