@@ -75,7 +75,7 @@ class msfScan:
 
         if not self.found_msf_modules:
             print("\n[!] No Metasploit modules found for the given CVEs.")
-            return {"[!] No Metasploit modules found for the given CVEs."}
+            return "[!] No Metasploit modules found for the given CVEs."
         
         return self.found_msf_modules
 
