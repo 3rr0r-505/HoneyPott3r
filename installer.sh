@@ -71,7 +71,7 @@ install_pypkg(){
     # Ensure pip is installed
     if ! command -v pip &> /dev/null; then
         echo "[!] pip not found. Installing..."
-        sudo apt update && sudo apt install -y python3-pip
+        sudo apt update && sudo apt install -y python3-pip &> /dev/null
     fi
 
     # Loop through each package and install
