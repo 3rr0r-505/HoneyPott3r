@@ -1,31 +1,18 @@
-##################################################
-# Note: main.py is not completed!
-# Note: implement after completing modules! 
-##################################################
-
 #!/usr/bin/env python3
 
 # importing libraries
 import os
+import re
 import sys
 import time
 import json
 import datetime
-from modules import detectHoneypot
-from modules import revExploit
-from modules import privEsc
-from modules import DenialOfService
-from modules import serviceCrash
-from modules import logEvasion
-from tools import msfScan
-from tools import Scanners
-# from tools import nmapScan, niktoScan, msfScan, openVASScan
-# from modules import (
-#     detectHoneypot, codeInjection, dataLeakage,
-#     denialOfService, logsEvasion, privEsc, revExploit, tarBomb
-# )
-from utils import mongoLoader
-from utils import Logger
+from tools import Scanners, msfScan
+from modules import (
+    detectHoneypot, codeInjection, dataLeakage,  logEvasion,
+    privEsc, revExploit, DenialOfService
+)
+from utils import mongoLoader, Logger
 
 # Check if the script is run as root (UID 0)
 if os.geteuid() != 0:
@@ -49,13 +36,13 @@ MENU = r"""
 [#] Welcome to HoneyPott3r! developed by 5pyd3r!!
 [#] Here's the list of operations.
 
-[!] Scans:
+[>] Scans:
 [1] Nmap scan
 [2] Nikto scan
 [3] OpenVAS scan
 [4] Metasploit scan
 
-[!] Attacks:
+[>] Attacks:
 [1] Honeypot Detection
 [2] Code Injection
 [3] Data Leakage
@@ -65,7 +52,7 @@ MENU = r"""
 [7] Reverse Exploitation
 [8] Privilege Escalation
 
-[!] Commands:
+[>] Commands:
 [1] To Start the Scan use 'start'
 [2] To run the Scan use 'scan'
 [3] To reset the credentials use 'reset'
@@ -86,6 +73,13 @@ def get_timestamp():
 def user_input(prompt):
     """Handles user input with proper formatting"""
     return input(f"HoneyPott3r > {prompt}: ").strip().lower()
+
+def remove_ansi(text):
+    """Remove ANSI escape sequences from the given text or list of texts."""
+    if isinstance(text, list):
+        return [re.sub(r'\x1b\[[0-9;]*[mK]', '', item) for item in text]
+    return re.sub(r'\x1b\[[0-9;]*[mK]', '', text)
+
 
 def main():
     print(BANNER)  # Show banner initially
@@ -118,7 +112,6 @@ def main():
                     "http-link": link
                 }
             }
-
             # os.makedirs("config", exist_ok=True)
             with open(config_path, "w") as config_file:
                 json.dump(config_data, config_file, indent=4)
@@ -158,11 +151,19 @@ def main():
             detection_result = detection.detect()
             print(detection_result)
             # ================Code Injection======================
-            # print("\n====================Code Injection====================\n")
-            # code_injection.codeInjection()
+            print("\n====================Code Injection====================\n")
+            injection = codeInjection()
+            injection_result = injection.inject()
+            print("\n")
+            print("[+] here's the result of code injection Attack:")
+            print(injection_result)
             # ================Data Leakage========================
-            # print("\n====================Data Leakage====================\n")
-            # data_leakage.dataLeakage()
+            print("\n====================Data Leakage====================\n")
+            dl = dataLeakage()
+            leakage_result = dl.leakage()
+            print("\n")
+            print("[+] here's the result of data leakage Attack:")
+            print(leakage_result)
             # ======================Log Evasion=======================
             print("\n====================Log Evasion====================\n")
             try:
@@ -177,29 +178,23 @@ def main():
             evader_result = evader.evade()
             print("[+] here's the result of log evasion Attack:")
             print(evader_result)
+            # ================Privilege Escalation================
+            print("\n====================Privilege Escalation====================\n")
+            privChker = privEsc()
+            privEsc_result = privChker.scanImage()
+            print("\n\n[+]Privilege Escalation final report:")
+            print(privEsc_result)
+            print(f"\nCVE count: {len(privEsc_result)}")
             # ================Reverse Exploitation================
-            # print("\n====================Reverse Exploitation====================\n")
-            # exploit = revExploit()
-            # revExplt_result = exploit.explt() # this is a list
-            # print("\n\n")
-            # print("[+] here's the result of Reverse Exploitation:")
-            # print(revExplt_result)
-            # print("\n\n")
-            # print(type(revExplt_result))
-            # ======================Service Crash=====================
-            # print("\n====================Service Crash====================\n")
-            # try:
-            #     duration = int(input("[+] How long U wanna down service(in minutes): "))
-            #     if duration <= 0:
-            #         print("[!] Invalid duration! Enter a positive number.")
-            #         sys.exit(1)
-            # except ValueError:
-            #     print("[!] Invalid input! Please enter a number.")
-            #     sys.exit(1)
-            # crusher = serviceCrash(duration)
-            # crash_result = crusher.crash()
-            # print("[+] here's the result of Service Crash Attack:")
-            # print(crash_result)
+            print("\n====================Reverse Exploitation====================\n")
+            exploit = revExploit()
+            revExplt_result = exploit.explt() # this is a list
+            print("\n\n")
+            print("[+] here's the result of Reverse Exploitation:")
+            print("\n[+] Static Analysis Output:")
+            print("\n".join(revExplt_result["static_analysis"]))  # Prints exactly like terminal
+            print("\n[+] Package Analysis Output:")
+            print("\n".join(revExplt_result["package_analysis"]))  # Prints exactly like terminal
             # ================Denial of Service Attack==============
             print("\n====================Denial of Service====================\n")
             try:
@@ -214,24 +209,17 @@ def main():
             dos_result  = dos.attack()
             print("[+] here's the result of DoS Attack:")
             print(dos_result)
-            # ================Privilege Escalation================
-            print("\n====================Privilege Escalation====================\n")
-            privChker = privEsc()
-            privEsc_result = privChker.scanImage()
-            print("\n\n[+]Privilege Escalation final report:")
-            print(privEsc_result)
-            print(f"\nCVE count: {len(privEsc_result)}")
-            print(type(privEsc_result))
             # ====================#@!&*%?====================#@!&*%?===================#@!&*%?====================
             # ====================#@!&*%?====================#@!&*%?===================#@!&*%?====================
             
             # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             #       Run scanning tools
             # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            print("==================================")
+            print("\n==================================")
             print("[+] Executing Scanning Modules")
             print("==================================\n")
             # ================Scanning using Nmap, Nikto & WPscan=====================================
+            print("\n====================Scanning using Nmap, Nikto & WPscan====================\n")
             try:
                 nikto_duration = float(input("[+] how long U wanna run nikto scan (in minutes): "))
                 wpscan_duration = float(input("[+] how long U wanna run WPscan (in minutes): "))
@@ -258,21 +246,19 @@ def main():
                 nmap_result = scan_results  # If only nmap runs
 
             # Print results
-            print("\n\n\n[+] Scan Results:")
-            if nmap_result:
-                print("\n[+] Nmap Result:\n", nmap_result)
-            if nikto_result:
-                print("\n[+] Nikto Result:\n", nikto_result)
-            if wpscan_result:
-                print("\n[+] WPScan Result:\n", wpscan_result)
+            # print("\n\n[+] Scan Results:")
+            # if nmap_result:
+            #     print("\n[+] Nmap Result:\n", nmap_result)
+            # if nikto_result:
+            #     print("\n[+] Nikto Result:\n", nikto_result)
+            # if wpscan_result:
+            #     print("\n[+] WPScan Result:\n", wpscan_result)
             # ==================Metasploit Scan================================
             msfModules = msfScan()
-            msf_result = msfModules.msfScan(privEsc_result) # this is a list 
+            msf_result = msfModules.msfScan(privEsc_result) # this is a list
             print("\n\n")
             print("[+] here's the result of msf modules:")
             print(msf_result)
-            print("\n\n\n")
-            print(type(msf_result))
             # ====================#@!&*%?====================#@!&*%?===================#@!&*%?====================
             # ====================#@!&*%?====================#@!&*%?===================#@!&*%?====================
 
@@ -295,40 +281,62 @@ def main():
                 {
                     "nmap_scan": nmap_result,
                     "nikto_scan": nikto_result,
-                    "wp_scan": wpscan_result,
-                    "msf_scan": msf_result,
-                    "openVAS_scan": "<openVAS-report>"
+                    "WPscan_scan": wpscan_result,
+                    "msf_scan": msf_result
                 },
                 "attacks":
                 {
                     "honeypot_detection": detection_result,  
-                    "code_injection": "codeInjection_result",       
-                    "data_leakage": "dataLeakage_result",
+                    "code_injection": injection_result,       
+                    "data_leakage": leakage_result,
                     "evading_logs": evader_result,         
-                    "reverse_exploitation": "revExploit_result", 
-                    "service_crash": "tarBomb_result",       
-                    "dos_attack": dos_result,           
-                    "privilege_escalation": privEsc_result
+                    "privilege_escalation": privEsc_result,
+                    "reverse_exploitation": 
+                        {
+                            "Static Analysis": remove_ansi(revExplt_result["static_analysis"]),
+                            "Package Analysis": remove_ansi(revExplt_result["package_analysis"])
+                        },       
+                    "dos_attack": dos_result           
                 }
             }
+
+            print("\n====================Report Data====================\n")
+            def convert_sets(obj):
+                if isinstance(obj, set):
+                    return list(obj)  # Convert set to list
+                elif isinstance(obj, dict):
+                    return {k: convert_sets(v) for k, v in obj.items()}  # Recursively convert dict values
+                elif isinstance(obj, list):
+                    return [convert_sets(v) for v in obj]  # Recursively convert list items
+                return obj  # Return as is if not a set
+
+            # Ensure JSON serializability
+            report_data_serializable = convert_sets(report_data)
+            print(json.dumps(report_data_serializable, indent=4))
+
+            print("[+] Report to store mongoDB")
+            print(report_data)
             # ====================#@!&*%?====================#@!&*%?===================#@!&*%?====================
             # ====================#@!&*%?====================#@!&*%?===================#@!&*%?====================
 
             # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             #       Running utils
             # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            # Create an instance of MongoLoader
-            mongo_loader = mongoLoader()
-            # Uploading report data to MongoDB using the MongoLoader class
-            mongo_loader.upload(report_data)
-            
             time.sleep(2)
             print("\n[+] Testing complete!\n")
+
+            # Time Calculation
             end_time = time.time()  # End timer
             duration = end_time - start_time  # Calculate duration
             minutes, seconds = divmod(duration, 60)
             print(f"[+] Execution time: {int(minutes)} min {seconds:.2f} sec")
-            logger.stop_logging()
+
+            log_file = logger.stop_logging()
+
+            #Upload report to mongoDB
+            mongo_loader = mongoLoader()
+            mongo_loader.upload(report_data,log_file)
+            print(f"\nScan result is stored in: {log_file}")
             time.sleep(2)
             print(MENU) 
 

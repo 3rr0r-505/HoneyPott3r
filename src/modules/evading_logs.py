@@ -14,6 +14,9 @@ class logEvasion:
         self.config = self.load_config()
         self.attack_duration = attack_duration * 60
         self.stop_event = threading.Event()
+        self.fake_http_commands = [
+            "GET /wp-login.php", "GET /xmlrpc.php", "POST /wp-admin/admin-ajax.php", "GET /robots.txt"
+        ]
 
     def load_config(self):
         config_path = Path(__file__).parent.parent / "configs" / "config.json"

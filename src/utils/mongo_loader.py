@@ -13,7 +13,7 @@ class mongoLoader:
         # mongo_uri = os.getenv('MONGO_URI')  # For remote server
         mongo_uri = "mongodb://localhost:27017/"
         if not mongo_uri:
-            raise ValueError("[!] MONGO_URI is not set in the .env file")
+            raise ValueError("[!] MONGO_URI is not set.")
 
         self.db_name = "honeypott3r"
         self.collection_name = "scan_results"

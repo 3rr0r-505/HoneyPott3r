@@ -163,8 +163,10 @@ cython_debug/
 
 # testing scripts 
 test.py
+test1.py
 
 # config json
 config.json
 
 tempCodeRunnerFile.py
+results/

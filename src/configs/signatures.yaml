@@ -26,7 +26,7 @@
   - name: "cowrie"
     steps:
       - input: ""
-        output: "SSH-2.0-OpenSSH_6.0p1 Debian-4+deb7u2\r\n"
+        output: "SSH-2.0-OpenSSH_6.0p1 Debian-4+deb7u2"
 
   - name: "kippo"
     steps:
