@@ -86,7 +86,8 @@ def remove_ansi(text):
         return [re.sub(r'\x1b\[[0-9;]*[mK]', '', item) for item in text]
     return re.sub(r'\x1b\[[0-9;]*[mK]', '', text)
 
-dashboard_process = subprocess.Popen(["python3", "dashboard/dashboard.py"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+dashboard_path = os.path.join(os.path.dirname(__file__), "dashboard", "dashboard.py")
+dashboard_process = subprocess.Popen([sys.executable, dashboard_path], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 def exit_handler():
     print("\n[!] Exiting HoneyPott3r...")
