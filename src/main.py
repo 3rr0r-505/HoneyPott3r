@@ -6,13 +6,15 @@ import re
 import sys
 import time
 import json
+import signal
 import datetime
+import subprocess
 from tools import Scanners, msfScan
 from modules import (
     detectHoneypot, codeInjection, dataLeakage,  logEvasion,
-    privEsc, revExploit, DenialOfService
-)
+    privEsc, revExploit, DenialOfService)
 from utils import mongoLoader, Logger
+from dashboard import app
 
 # Check if the script is run as root (UID 0)
 if os.geteuid() != 0:
@@ -57,6 +59,8 @@ MENU = r"""
 [2] To run the Scan use 'scan'
 [3] To reset the credentials use 'reset'
 [4] To Exit use 'exit'
+
+[#] To check the results in dashboard, visit http://localhost:5050/
 """
 
 # Get the absolute path of the directory where main.py is located
@@ -65,6 +69,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 config_dir = os.path.join(BASE_DIR, "configs")
 os.makedirs(config_dir, exist_ok=True)
 config_path = os.path.join(config_dir, "config.json")
+
+stop_flag = False
 
 def get_timestamp():
     """Returns a timestamp string for folder naming."""
@@ -80,13 +86,26 @@ def remove_ansi(text):
         return [re.sub(r'\x1b\[[0-9;]*[mK]', '', item) for item in text]
     return re.sub(r'\x1b\[[0-9;]*[mK]', '', text)
 
+dashboard_process = subprocess.Popen(["python3", "dashboard/dashboard.py"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+def exit_handler():
+    print("\n[!] Exiting HoneyPott3r...")
+    dashboard_process.terminate()  # Terminate the Flask process
+    dashboard_process.wait()  # Wait for the process to finish
+    sys.exit(0)
+
+# Handle exit signals
+signal.signal(signal.SIGINT, lambda sig, frame: exit_handler())  # Ctrl+C
+signal.signal(signal.SIGTERM, lambda sig, frame: exit_handler())  # Kill command
 
 def main():
+    global stop_flag
+
     print(BANNER)  # Show banner initially
     print(MENU)  # Show menu initially
-    
+
     while True:
-        command = user_input("Enter your command")
+        command = user_input("Enter your command").strip().lower()
 
         # Start the test
         if command == "start": # Always show menu after each scan
@@ -198,7 +217,7 @@ def main():
             # ================Denial of Service Attack==============
             print("\n====================Denial of Service====================\n")
             try:
-                duration = int(input("[+] How long U wanna run DOS (in minutes): "))
+                duration = float(input("[+] How long U wanna run DOS (in minutes): "))
                 if duration <= 0:
                     print("[!] Invalid duration! Enter a positive number.")
                     sys.exit(1)
@@ -351,8 +370,7 @@ def main():
 
         # Exit the loop and terminate the script
         elif command == "exit":
-            print("[!] Exiting HoneyPott3r...")
-            break  
+            exit_handler()
 
         else:
             print("[!] Invalid command. Please try again.")
