@@ -8,7 +8,7 @@ import json
 app = Flask(__name__)
 
 # Configure logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+# logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 # Connect to MongoDB
 client = MongoClient("mongodb://localhost:27017/")
