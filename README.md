@@ -51,6 +51,9 @@
      sudo ./uninstall.sh
      ```
 ---
+## Dashboard
+- To view all reports in the dashboard, visit `http://localhost:5050/`
+---
 <!--
 ## Usage
 - Start all honeypot services:
