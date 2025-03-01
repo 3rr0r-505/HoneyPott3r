@@ -5,3 +5,4 @@ pymongo
 yaml
 tabulate
 dotenv
+flask
