@@ -47,34 +47,34 @@ HoneyPott3r/src/
 ## Project Workflow
 Here’s the workflow of your tool:
 ```
-Start Tool
-   ↓
-Initiaing monogdb and dashboard
-   ↓
-Get User Input (Target IP/Range)
-   ↓
-Simulate Attacks
-   ├── Honeypot Detection → Observe Honeypot Behavior
-   ├── Code Injection → Analyze Logs/Responses
-   ├── Data Leakage → finding data leakage
-   ├── Log Evasion → Verify if Logs Are Manipulated
-   ├── Privilege Escalation → Check Response to Exploits
-   ├── Reverse Exploitation → Honeypot Weakness Test
-   └── DoS/Service Crash → Observe Honeypot Behavior
-   ↓
-Simulate Scanning
-   ├── Nmap Scan → scan honeypopt network
-   ├── Nikto scan → check http endpoints for http honeypots
-   ├── WP scan → check http endpoints for http-wordpress honeypots
-   └── MSF scan → finding msf modules for discovered CVEs
-   ↓
-Generate Report & real-time logs
-   ↓
-Store Report and log file in monogDB localhost
-   ↓
-See repot in dashboard
-   ↓
-Exit Tool
+Start Tool  
+   ↓  
+Initialize MongoDB and Dashboard  
+   ↓  
+Get User Input (Target IP/Range)  
+   ↓  
+Simulate Attacks  
+   ├── Honeypot Detection → Identify and analyze honeypot behavior  
+   ├── Code Injection → Execute payloads and analyze responses/logs  
+   ├── Data Leakage → Detect unintended data exposure  
+   ├── Log Evasion → Check if logs are manipulated or bypassed  
+   ├── Privilege Escalation → Test system response to privilege exploits  
+   ├── Reverse Exploitation → Exploit weaknesses in honeypots  
+   └── DoS/Service Crash → Observe honeypot resilience to denial-of-service attacks  
+   ↓  
+Simulate Scanning  
+   ├── Nmap Scan → Scan the network for honeypots  
+   ├── Nikto Scan → Check HTTP endpoints for web-based honeypots  
+   ├── WPScan → Identify vulnerabilities in WordPress honeypots  
+   └── MSF Scan → Find Metasploit modules for discovered CVEs  
+   ↓  
+Generate Report & Real-time Logs  
+   ↓  
+Store Report and Logs in MongoDB (localhost)  
+   ↓  
+View Report in Dashboard  
+   ↓  
+Exit Tool  
 ```
 ---
 
