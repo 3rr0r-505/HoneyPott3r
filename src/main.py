@@ -320,15 +320,15 @@ def main():
                 }
             }
 
-            print("\n====================Report Data====================\n")
-            def convert_sets(obj):
-                if isinstance(obj, set):
-                    return list(obj)  # Convert set to list
-                elif isinstance(obj, dict):
-                    return {k: convert_sets(v) for k, v in obj.items()}  # Recursively convert dict values
-                elif isinstance(obj, list):
-                    return [convert_sets(v) for v in obj]  # Recursively convert list items
-                return obj  # Return as is if not a set
+            # print("\n====================Report Data====================\n")
+            # def convert_sets(obj):
+            #     if isinstance(obj, set):
+            #         return list(obj)  # Convert set to list
+            #     elif isinstance(obj, dict):
+            #         return {k: convert_sets(v) for k, v in obj.items()}  # Recursively convert dict values
+            #     elif isinstance(obj, list):
+            #         return [convert_sets(v) for v in obj]  # Recursively convert list items
+            #     return obj  # Return as is if not a set
 
             # Ensure JSON serializability
             # report_data_serializable = convert_sets(report_data)
