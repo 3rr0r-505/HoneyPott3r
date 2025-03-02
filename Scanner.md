@@ -6,42 +6,41 @@
 ## Project File Structure
 Here's an overview of the main project directory and its structure:
 ```
-HoneyPott3r/
-│
-├── main.py                     # Main entry point for the tool
-├── README.md                   # Project Overview & Setup
-├── requirements.txt            # List of Python dependencies
-│
-├── tools/                      # External tools & scripts
-│   ├── scanners.py             # Nmap, Nikto, WPscan vulnerability scanning script
-│   └── msf_scan.py             # Metasploit module finder script
-│
-├── modules/                    # Core attack modules
-│   ├── honeypot_detection.py   # Honeypot fingerprinting
-│   ├── code_injection.py       # Code injection attacks
-│   ├── data_leakage.py         # Data leakage exploitation
-│   ├── privilege_escalation.py # Privilege escalation techniques
-│   ├── reverse_exploitation.py # Reverse exploitation of honeypots
-│   ├── dos_attack.py           # DoS attack simulation
-│   └── evading_logs.py         # Log evasion techniques
-│
-├── config/                     # Configurations for tools and modules
-│   ├── honeypots.yaml          # Honeypot's repo links
-│   ├── injection-cmd.yaml      # code injection commands & reponese
-│   ├── leakage-cmd.yaml        # data leakage commands & reponese
-│   └── signatures.yaml         # Honeypot signatures
-│
+HoneyPott3r/src/  
+│  
+├── main.py                     # Main entry point for the tool   
+│  
+├── tools/                      # External tools & scripts  
+│   ├── scanners.py             # Script for Nmap, Nikto, and WPScan vulnerability scanning  
+│   └── msf_scan.py             # Script to find Metasploit modules related to vulnerabilities  
+│  
+├── modules/                    # Core attack modules  
+│   ├── honeypot_detection.py   # Honeypot fingerprinting techniques  
+│   ├── code_injection.py       # Code injection attack methods  
+│   ├── data_leakage.py         # Exploitation techniques for data leakage  
+│   ├── privilege_escalation.py # Techniques for privilege escalation  
+│   ├── reverse_exploitation.py # Methods to exploit honeypots in reverse  
+│   ├── dos_attack.py           # DoS attack simulation methods  
+│   └── evading_logs.py         # Techniques for log evasion  
+│  
+├── config/                     # Configuration files for tools and modules  
+│   ├── honeypots.yaml          # Repository links for known honeypots  
+│   ├── injection-cmd.yaml      # Code injection commands & expected responses  
+│   ├── leakage-cmd.yaml        # Data leakage commands & expected responses  
+│   └── signatures.yaml         # Signatures to detect honeypots  
+│  
 ├── dashboard/                  # Web-based dashboard for viewing scan reports  
 │   ├── dashboard.py            # Flask script to run the dashboard server  
 │   └── templates/              # HTML templates for rendering dashboard pages  
 │       ├── index.html          # Template for listing all scan reports  
 │       ├── dashboard.html      # Template for displaying a summary view of a report  
 │       └── report.html         # Template for viewing the complete details of a report  
-│
-└── utils/                      # Helper functions & utilities
-    ├── logger.py               # Logging functionality
-    ├── mongo_loader.py         # load reports to mongodb
-    └── config_loader.py        # Load configuration files
+│  
+└── utils/                      # Helper functions & utilities  
+    ├── logger.py               # Logging functionality  
+    ├── mongo_loader.py         # Script to load reports into MongoDB  
+    └── config_loader.py        # Script to load configuration files  
+
 ```
 ---
 
