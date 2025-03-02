@@ -331,11 +331,11 @@ def main():
                 return obj  # Return as is if not a set
 
             # Ensure JSON serializability
-            report_data_serializable = convert_sets(report_data)
-            print(json.dumps(report_data_serializable, indent=4))
+            # report_data_serializable = convert_sets(report_data)
+            # print(json.dumps(report_data_serializable, indent=4))
 
-            print("[+] Report to store mongoDB")
-            print(report_data)
+            # print("[+] Report to store mongoDB")
+            # print(report_data)
             # ====================#@!&*%?====================#@!&*%?===================#@!&*%?====================
             # ====================#@!&*%?====================#@!&*%?===================#@!&*%?====================
 
