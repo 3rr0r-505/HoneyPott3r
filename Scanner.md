@@ -49,31 +49,32 @@ Here’s the workflow of your tool:
 ```
 Start Tool
    ↓
+Initiaing monogdb and dashboard
+   ↓
 Get User Input (Target IP/Range)
    ↓
-Network Scanning (e.g., Nmap, OpenVAS)
-   ↓
-Analyze Responses for Honeypot Indicators
-   ↓
-   ├── Detect Common Honeypot Frameworks (e.g., Cowrie, Dionaea)
-   │       ↓
-   │   Match Honeypot Signatures (Banners, Ports, Behaviors)
-   ↓
 Simulate Attacks
+   ├── Honeypot Detection → Observe Honeypot Behavior
    ├── Code Injection → Analyze Logs/Responses
-   ├── DoS/Service Crash → Observe Honeypot Behavior
+   ├── Data Leakage → finding data leakage
+   ├── Log Evasion → Verify if Logs Are Manipulated
    ├── Privilege Escalation → Check Response to Exploits
    ├── Reverse Exploitation → Honeypot Weakness Test
-   └── Log Evasion → Verify if Logs Are Manipulated
+   └── DoS/Service Crash → Observe Honeypot Behavior
    ↓
-Generate Results
-   ├── Detected Honeypots
-   ├── Attack Success/Failure Reports
-   └── Exploited Vulnerabilities
+Simulate Scanning
+   ├── Nmap Scan → scan honeypopt network
+   ├── Nikto scan → check http endpoints for http honeypots
+   ├── WP scan → check http endpoints for http-wordpress honeypots
+   └── MSF scan → finding msf modules for discovered CVEs
    ↓
-Store Results in Logs/Reports
+Generate Report & real-time logs
    ↓
-End Tool
+Store Report and log file in monogDB localhost
+   ↓
+See repot in dashboard
+   ↓
+Exit Tool
 ```
 ---
 
