@@ -103,18 +103,19 @@ Here’s the list of features for this project:
 | **Category**              | **Feature**                     | **Description**                                                                                     |
 |---------------------------|---------------------------------|-----------------------------------------------------------------------------------------------------|
 | **Detection**             | Honeypot Detection              | Identifies and fingerprints honeypots deployed in the network.                                      |
-| **Scanning**              | Vulnerability Scanning          | Integrates tools like Nmap, Nikto, Metasploit, and OpenVAS to find vulnerabilities.                 |
+| **Scanning**              | Vulnerability Scanning          | Integrates tools like Nmap, Nikto, WPscan, and Metasploit to find vulnerabilities.                  |
 | **Exploitation**          |                                 |                                                                                                     |
 |   1                       | Code Injection Attacks          | Simulates injection attacks (e.g., SQL, Command) to evaluate honeypot defenses.                     |
 |   2                       | Data Leakage Exploitation       | Attempts to extract sensitive information stored in the honeypot.                                   |
 |   3                       | Reverse Exploitation            | Uses the honeypot’s own vulnerabilities to launch counterattacks.                                   |
-|   4                       | Service Crashing                | Exploits weaknesses to crash specific services in the honeypot.                                     |
-|   5                       | Privilege Escalation            | Tests for vulnerabilities that allow unauthorized access to higher privilege levels.                |
-| **Simulation**            | DoS Attack Simulation           | Simulates denial-of-service attacks to test the resilience of the honeypot.                         |
+|   4                       | Privilege Escalation            | Tests for vulnerabilities that allow unauthorized access to higher privilege levels.                |
 | **Stealth**               | Log Evasion Techniques          | Implements methods to bypass or manipulate honeypot logging mechanisms.                             |
+| **Simulation**            | DoS Attack Simulation           | Simulates denial-of-service attacks to test the resilience of the honeypot.                         |
 | **Configuration**         | Customizable Configurations     | Allows easy configuration of scan settings and attack parameters using YAML files.                  |
 | **Reporting**             | Integrated Reporting            | Logs results of scans, exploits, and generates a detailed final report for analysis.                |
-| **Tool Integration**      | Multi-Tool Integration          | Seamlessly integrates external tools like Nmap, Metasploit, Nikto, and OpenVAS for enhanced testing.|
+| **Storage**               | MongoDB Localhost Storage	      | Stores scan reports and logs in a MongoDB database for future reference.                            |
+| **Visualization**	        | Web UI Dashboard	              | Provides a Flask-based web dashboard to view scan reports and analysis in real time.                |
+| **Tool Integration**      | Multi-Tool Integration          | Seamlessly integrates external tools like Nmap, Metasploit, Nikto, and WPscan for enhanced testing. |
 | **Usability**             |                                 |                                                                                                     |
 |   1                       | User-Friendly Interface         | Centralized `main.py` script to manage all operations with a simple CLI or menu interface.          |
 |   2                       | Modular Design                  | Organized file structure for easy scalability and maintenance.                                      |
