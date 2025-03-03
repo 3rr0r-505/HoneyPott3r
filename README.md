@@ -3,6 +3,17 @@
 >### ⚙️ **This project is currently at version 1.0.0**
 >### 📖 **For detailed guidance, check out the [HoneyPott3r wiki](https://github.com/3rr0r-505/HoneyPott3r/wiki)📚**
 
+```
+              #####################################################################################################
+              ##     __  __                                      ____              __     __     _____           ##
+              ##    / / / /  ____     ____     ___     __  __   / __ \   ____     / /_   / /_   |__  /   _____   ##
+              ##   / /_/ /  / __ \   / __ \   / _ \   / / / /  / /_/ /  / __ \   / __/  / __/    /_ <   / ___/   ##
+              ##  / __  /  / /_/ /  / / / /  /  __/  / /_/ /  / ____/  / /_/ /  / /_   / /_    ___/ /  / /       ## 
+              ## /_/ /_/   \____/  /_/ /_/   \___/   \__, /  /_/       \____/   \__/   \__/   /____/  /_/        ##
+              ##                                    /____/                                                       ## 
+              #####################################################################################################
+```
+
 <p align="center"> 
 <a href="https://www.python.org/"><img alt="" src="https://img.shields.io/badge/python-3.11%2B-blue?logo=python&logoColor=88d4d7"/></a>
 <a href="https://pypi.org/project/requests/"><img alt="Dependency" src="https://img.shields.io/badge/pypi-dependency-orange?logo=pypi&logoColor=white"/></a>
