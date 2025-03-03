@@ -27,6 +27,7 @@
 <a href="https://vercel.com/"><img alt="" src="https://img.shields.io/badge/vercel-deployment-black?logo=vercel&logoColor=white"/></a>
 <a href="https://www.mongodb.com/"><img alt="" src="https://img.shields.io/badge/mongoDB-Atlas-green?logo=mongodb&logoColor=white"/></a>
 <a href="https://www.kali.org/"><img alt="Kali Linux" src="https://img.shields.io/badge/Kali%20Linux-2024.4-blue?logo=kali-linux&logoColor=white"/></a>
+<a href="https://ubuntu.com/"><img alt="Ubuntu" src="https://img.shields.io/badge/Ubuntu-24.04-orange?logo=ubuntu&logoColor=white"/></a>
 </p>
 
 ## Project Overview
