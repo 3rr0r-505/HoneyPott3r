@@ -21,11 +21,7 @@
 <a href="https://www.json.org/"><img alt="" src="https://img.shields.io/badge/json-structured-lightblue?logo=json&logoColor=white"/></a>
 <a href="https://nmap.org/"><img alt="" src="https://img.shields.io/badge/nmap-Network%20Scnner-blue?logo=nmap&logoColor=white"/></a>
 <a href="https://cirt.net/Nikto2"><img alt="Nikto" src="https://img.shields.io/badge/Nikto-Web%20Server%20Scanner-89c3e4?logo=nikto&logoColor=white"/></a>
-<a href="https://wpscan.com/">
-  <img alt="WPScan" src="https://img.shields.io/badge/WPScan-Security_Tool-09b585?logoColor=white"/>
-</a>
-
-
+<a href="https://wpscan.com/"><img alt="WPScan" src="https://img.shields.io/badge/WPScan-Security_Tool-09b585?logoColor=white"/></a>
 <a href="https://www.metasploit.com/"><img alt="" src="https://img.shields.io/badge/metasploit-framework-red?logo=metasploit&logoColor=white"/></a>
 <a href="https://developer.mozilla.org/en-US/docs/Web"><img alt="" src="https://img.shields.io/badge/web%20technology-HTML%2FCSS%2FJS-blue?logo=html5&logoColor=white"/></a>
 <a href="https://vercel.com/"><img alt="" src="https://img.shields.io/badge/vercel-deployment-black?logo=vercel&logoColor=white"/></a>
