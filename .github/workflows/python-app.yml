@@ -22,13 +22,20 @@ jobs:
       - name: Install tools
         run: |
           python -m pip install --upgrade pip
-          pip install bandit black flake8
+          pip install bandit black flake8 jq
 
       - name: Bandit Scan
         id: bandit
         run: |
-          bandit -r . -lll || true
-          echo "::set-output name=summary::Bandit scan done"
+          # Run Bandit and output JSON
+          bandit -r . -f json -o bandit_report.json || true
+
+          # Count issues by severity
+          HIGH=$(jq '[.results[] | select(.issue_severity=="HIGH")] | length' bandit_report.json)
+          MEDIUM=$(jq '[.results[] | select(.issue_severity=="MEDIUM")] | length' bandit_report.json)
+          LOW=$(jq '[.results[] | select(.issue_severity=="LOW")] | length' bandit_report.json)
+
+          echo "::set-output name=summary::High: $HIGH, Medium: $MEDIUM, Low: $LOW"
 
       - name: Lint & Format Check
         run: |
@@ -50,14 +57,21 @@ jobs:
       - name: Install Safety
         run: |
           python -m pip install --upgrade pip
-          pip install safety
+          pip install safety jq
           pip install -r requirements.txt
 
       - name: Safety Scan
         id: safety
         run: |
-          safety check -r requirements.txt || true
-          echo "::set-output name=summary::Safety scan done"
+          # Run Safety JSON report
+          safety check -r requirements.txt --json > safety_report.json || true
+
+          # Count vulnerabilities by severity
+          HIGH=$(jq '[.[] | select(.severity=="high")] | length' safety_report.json)
+          MEDIUM=$(jq '[.[] | select(.severity=="medium")] | length' safety_report.json)
+          LOW=$(jq '[.[] | select(.severity=="low")] | length' safety_report.json)
+
+          echo "::set-output name=summary::High: $HIGH, Medium: $MEDIUM, Low: $LOW"
 
   docker-scan:
     name: Docker Scan (Conditional)
@@ -73,14 +87,22 @@ jobs:
           if [ -f Dockerfile ]; then
             echo "Dockerfile found — running Trivy scan."
             sudo apt-get update
-            sudo apt-get install -y wget
+            sudo apt-get install -y wget jq
             wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_0.41.2_Linux-64bit.deb
             sudo dpkg -i trivy_0.41.2_Linux-64bit.deb
-            trivy fs --severity CRITICAL,HIGH . || true
-            echo "::set-output name=summary::Trivy scan done"
+
+            # Run Trivy JSON report
+            trivy fs --severity CRITICAL,HIGH -f json -o trivy_report.json . || true
+
+            # Count vulnerabilities
+            HIGH=$(jq '[.Results[].Vulnerabilities[]? | select(.Severity=="CRITICAL" or .Severity=="HIGH")] | length' trivy_report.json)
+            MEDIUM=$(jq '[.Results[].Vulnerabilities[]? | select(.Severity=="MEDIUM")] | length' trivy_report.json)
+            LOW=$(jq '[.Results[].Vulnerabilities[]? | select(.Severity=="LOW")] | length' trivy_report.json)
+
+            echo "::set-output name=summary::High: $HIGH, Medium: $MEDIUM, Low: $LOW"
           else
             echo "No Dockerfile found — skipping Trivy scan."
-            echo "::set-output name=summary::Skipped"
+            echo "::set-output name=summary::No Dockerfile"
           fi
 
   combined-summary:
