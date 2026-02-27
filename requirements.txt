@@ -2,7 +2,7 @@ paramiko
 requests
 scapy
 pymongo
-yaml
+PyYAML
 tabulate
 dotenv
 flask
