@@ -60,14 +60,14 @@ jobs:
         id: safety
         run: |
           safety check -r requirements.txt --json > safety_report.json || true
-          if [ -s safety_report.json ]; then
-            HIGH=$(jq '[.[] | select(.severity=="high")] | length' safety_report.json)
-            MEDIUM=$(jq '[.[] | select(.severity=="medium")] | length' safety_report.json)
-            LOW=$(jq '[.[] | select(.severity=="low")] | length' safety_report.json)
+          if [ -s safety_report.json ] && jq empty safety_report.json 2>/dev/null; then
+              HIGH=$(jq '[.[] | select(.severity=="high")] | length' safety_report.json)
+              MEDIUM=$(jq '[.[] | select(.severity=="medium")] | length' safety_report.json)
+              LOW=$(jq '[.[] | select(.severity=="low")] | length' safety_report.json)
           else
-            HIGH=0
-            MEDIUM=0
-            LOW=0
+              HIGH=0
+              MEDIUM=0
+              LOW=0
           fi
           echo "summary=High: $HIGH, Medium: $MEDIUM, Low: $LOW" >> $GITHUB_OUTPUT
 
@@ -83,26 +83,27 @@ jobs:
         id: trivy
         run: |
           if [ -f Dockerfile ]; then
-            echo "Dockerfile found — running Trivy scan."
-            sudo apt-get update
-            sudo apt-get install -y wget jq
-            wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_0.41.2_Linux-64bit.deb
-            sudo dpkg -i trivy_0.41.2_Linux-64bit.deb
+              echo "Dockerfile found — running Trivy scan."
+              sudo apt-get update
+              sudo apt-get install -y wget jq
+              wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_0.41.2_Linux-64bit.deb
+              sudo dpkg -i trivy_0.41.2_Linux-64bit.deb
 
-            trivy fs --severity CRITICAL,HIGH -f json -o trivy_report.json . || true
-            if [ -s trivy_report.json ]; then
-              HIGH=$(jq '[.Results[].Vulnerabilities[]? | select(.Severity=="CRITICAL" or .Severity=="HIGH")] | length' trivy_report.json)
-              MEDIUM=$(jq '[.Results[].Vulnerabilities[]? | select(.Severity=="MEDIUM")] | length' trivy_report.json)
-              LOW=$(jq '[.Results[].Vulnerabilities[]? | select(.Severity=="LOW")] | length' trivy_report.json)
-            else
-              HIGH=0
-              MEDIUM=0
-              LOW=0
-            fi
-            echo "summary=High: $HIGH, Medium: $MEDIUM, Low: $LOW" >> $GITHUB_OUTPUT
+              trivy fs --severity CRITICAL,HIGH -f json -o trivy_report.json . || true
+              if [ -s trivy_report.json ]; then
+                  HIGH=$(jq '[.Results[].Vulnerabilities[]? | select(.Severity=="CRITICAL" or .Severity=="HIGH")] | length' trivy_report.json)
+                  MEDIUM=$(jq '[.Results[].Vulnerabilities[]? | select(.Severity=="MEDIUM")] | length' trivy_report.json)
+                  LOW=$(jq '[.Results[].Vulnerabilities[]? | select(.Severity=="LOW")] | length' trivy_report.json)
+              else
+                  HIGH=0
+                  MEDIUM=0
+                  LOW=0
+              fi
+              echo "summary=High: $HIGH, Medium: $MEDIUM, Low: $LOW" >> $GITHUB_OUTPUT
           else
-            echo "No Dockerfile found — skipping Trivy scan."
-            echo "summary=No Dockerfile" >> $GITHUB_OUTPUT
+              echo "No Dockerfile found — skipping Trivy scan."
+              echo "summary=No Dockerfile" >> $GITHUB_OUTPUT
+          fi
 
   combined-summary:
     name: Combined Security Summary
