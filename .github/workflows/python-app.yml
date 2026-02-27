@@ -27,15 +27,11 @@ jobs:
       - name: Bandit Scan
         id: bandit
         run: |
-          # Run Bandit and output JSON
           bandit -r . -f json -o bandit_report.json || true
-
-          # Count issues by severity
           HIGH=$(jq '[.results[] | select(.issue_severity=="HIGH")] | length' bandit_report.json)
           MEDIUM=$(jq '[.results[] | select(.issue_severity=="MEDIUM")] | length' bandit_report.json)
           LOW=$(jq '[.results[] | select(.issue_severity=="LOW")] | length' bandit_report.json)
-
-          echo "::set-output name=summary::High: $HIGH, Medium: $MEDIUM, Low: $LOW"
+          echo "summary=High: $HIGH, Medium: $MEDIUM, Low: $LOW" >> $GITHUB_OUTPUT
 
       - name: Lint & Format Check
         run: |
@@ -63,15 +59,17 @@ jobs:
       - name: Safety Scan
         id: safety
         run: |
-          # Run Safety JSON report
           safety check -r requirements.txt --json > safety_report.json || true
-
-          # Count vulnerabilities by severity
-          HIGH=$(jq '[.[] | select(.severity=="high")] | length' safety_report.json)
-          MEDIUM=$(jq '[.[] | select(.severity=="medium")] | length' safety_report.json)
-          LOW=$(jq '[.[] | select(.severity=="low")] | length' safety_report.json)
-
-          echo "::set-output name=summary::High: $HIGH, Medium: $MEDIUM, Low: $LOW"
+          if [ -s safety_report.json ]; then
+            HIGH=$(jq '[.[] | select(.severity=="high")] | length' safety_report.json)
+            MEDIUM=$(jq '[.[] | select(.severity=="medium")] | length' safety_report.json)
+            LOW=$(jq '[.[] | select(.severity=="low")] | length' safety_report.json)
+          else
+            HIGH=0
+            MEDIUM=0
+            LOW=0
+          fi
+          echo "summary=High: $HIGH, Medium: $MEDIUM, Low: $LOW" >> $GITHUB_OUTPUT
 
   docker-scan:
     name: Docker Scan (Conditional)
@@ -91,19 +89,20 @@ jobs:
             wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_0.41.2_Linux-64bit.deb
             sudo dpkg -i trivy_0.41.2_Linux-64bit.deb
 
-            # Run Trivy JSON report
             trivy fs --severity CRITICAL,HIGH -f json -o trivy_report.json . || true
-
-            # Count vulnerabilities
-            HIGH=$(jq '[.Results[].Vulnerabilities[]? | select(.Severity=="CRITICAL" or .Severity=="HIGH")] | length' trivy_report.json)
-            MEDIUM=$(jq '[.Results[].Vulnerabilities[]? | select(.Severity=="MEDIUM")] | length' trivy_report.json)
-            LOW=$(jq '[.Results[].Vulnerabilities[]? | select(.Severity=="LOW")] | length' trivy_report.json)
-
-            echo "::set-output name=summary::High: $HIGH, Medium: $MEDIUM, Low: $LOW"
+            if [ -s trivy_report.json ]; then
+              HIGH=$(jq '[.Results[].Vulnerabilities[]? | select(.Severity=="CRITICAL" or .Severity=="HIGH")] | length' trivy_report.json)
+              MEDIUM=$(jq '[.Results[].Vulnerabilities[]? | select(.Severity=="MEDIUM")] | length' trivy_report.json)
+              LOW=$(jq '[.Results[].Vulnerabilities[]? | select(.Severity=="LOW")] | length' trivy_report.json)
+            else
+              HIGH=0
+              MEDIUM=0
+              LOW=0
+            fi
+            echo "summary=High: $HIGH, Medium: $MEDIUM, Low: $LOW" >> $GITHUB_OUTPUT
           else
             echo "No Dockerfile found — skipping Trivy scan."
-            echo "::set-output name=summary::No Dockerfile"
-          fi
+            echo "summary=No Dockerfile" >> $GITHUB_OUTPUT
 
   combined-summary:
     name: Combined Security Summary
