@@ -7,46 +7,55 @@ on:
     branches: [main]
 
 jobs:
-  security:
-    name: Security Checks
+  static-code-check:
+    name: Static Code Check
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v4
+      - uses: actions/setup-python@v4
         with:
           python-version: 3.11
 
-      - name: Install dependencies & tools
+      - name: Install tools
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install bandit safety black flake8
+          pip install bandit black flake8
 
-      # -------------------------------
-      # 1️⃣ Static Code Check
-      # -------------------------------
-      - name: Static Code Security (Bandit)
-        run: |
-          bandit -r . -lll || true
+      - name: Bandit Scan
+        run: bandit -r . -lll || true
 
       - name: Lint & Format Check
         run: |
           black --check . || true
           flake8 . || true
 
-      # -------------------------------
-      # 2️⃣ Dependency Check
-      # -------------------------------
-      - name: Dependency Security (Safety)
+  dependency-check:
+    name: Dependency Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install Safety
+        run: |
+          python -m pip install --upgrade pip
+          pip install safety
+          pip install -r requirements.txt
+
+      - name: Safety Scan
         run: safety check -r requirements.txt || true
 
-      # -------------------------------
-      # 3️⃣ Optional Docker Scan
-      # -------------------------------
-      - name: Docker Security Scan (Trivy)
+  docker-scan:
+    name: Docker Scan (Conditional)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Conditional Trivy Scan
         run: |
           if [ -f Dockerfile ]; then
             echo "Dockerfile found — running Trivy scan."
