@@ -28,7 +28,7 @@ jobs:
         id: bandit
         run: |
           bandit -r . -lll || true
-          echo "::set-output name=summary::$(tail -n 10 bandit_report.txt || echo 'Bandit done')"
+          echo "::set-output name=summary::Bandit scan done"
 
       - name: Lint & Format Check
         run: |
@@ -57,7 +57,7 @@ jobs:
         id: safety
         run: |
           safety check -r requirements.txt || true
-          echo "::set-output name=summary::$(tail -n 10 safety_report.txt || echo 'Safety done')"
+          echo "::set-output name=summary::Safety scan done"
 
   docker-scan:
     name: Docker Scan (Conditional)
@@ -81,6 +81,7 @@ jobs:
           else
             echo "No Dockerfile found — skipping Trivy scan."
             echo "::set-output name=summary::Skipped"
+          fi
 
   combined-summary:
     name: Combined Security Summary
